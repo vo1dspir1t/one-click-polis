@@ -45,6 +45,16 @@ function saveDriversObjectToStorage(number_plate) {
             }
         }
 
+        if (driverObject.additional_parameters.is_owner) {
+            const ownerObject = {
+                first_name: driverObject.first_name,
+                last_name: driverObject.last_name,
+                patronymic: driverObject.patronymic,
+                birth_date: driverObject.birth_date
+            }
+            store.add(number_plate, {owner: ownerObject});
+        }
+
         DriversArray.push(driverObject);
     });
     store.add(number_plate, {drivers: DriversArray});
