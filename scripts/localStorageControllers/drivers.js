@@ -3,14 +3,14 @@ function saveDriversObjectToStorage(number_plate) {
     $('.drivers .driver').each(function () {
         let birthDate;
         try {
-            birthDate = new Date($(this).find('input[name=birth_date]').inputmask('unmaskedvalue')).toISOString().substr(0,10);
+            birthDate = new Date($(this).find('input[name=birth_date]').inputmask('unmaskedvalue')).toISOString().substr(0, 10);
         } catch (e) {
             birthDate = null;
         }
 
         let drivingExperienceStarted;
         try {
-            drivingExperienceStarted = new Date($(this).find('input[name=driving_experience_started]').inputmask('unmaskedvalue')).toISOString().substr(0,10);
+            drivingExperienceStarted = new Date($(this).find('input[name=driving_experience_started]').inputmask('unmaskedvalue')).toISOString().substr(0, 10);
         } catch (e) {
             drivingExperienceStarted = null;
         }
@@ -18,9 +18,9 @@ function saveDriversObjectToStorage(number_plate) {
         let driverLicenseIssue;
         try {
             if ($(this).find('input[name=yearOnly]').is(':checked'))
-                driverLicenseIssue = $(this).find('input[name=driving_experience_started]').inputmask('unmaskedvalue')+'-12-31';
+                driverLicenseIssue = $(this).find('input[name=driving_experience_started]').inputmask('unmaskedvalue') + '-12-31';
             else
-                driverLicenseIssue = drivingExperienceStarted;
+                driverLicenseIssue = null;
 
         } catch (e) {
             driverLicenseIssue = null;
@@ -34,8 +34,8 @@ function saveDriversObjectToStorage(number_plate) {
             driving_experience_started: drivingExperienceStarted,
             driver_licenses: [{
                 credential_type: "DRIVER_LICENSE",
-                number: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(0,4),
-                series: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(4,6),
+                number: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(0, 4),
+                series: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(4, 6),
                 issue_date: driverLicenseIssue
             }],
             additional_parameters: {
@@ -65,7 +65,10 @@ function loadDriversObjectFromStorage(number_plate) {
 
             let birthDate;
             try {
-                birthDate = new Date(driversObject.drivers[index].birth_date).toLocaleString();
+                if (driversObject.drivers[index].birth_date == null)
+                    birthDate = null;
+                else
+                    birthDate = new Date(driversObject.drivers[index].birth_date).toLocaleString();
             } catch (e) {
                 birthDate = null;
             }
@@ -76,7 +79,11 @@ function loadDriversObjectFromStorage(number_plate) {
                     drivingExperienceStarted = (driversObject.drivers[index].driving_experience_started).substr(0, 4);
                     setCheckboxInput($(this).find('input[name=yearOnly]'));
                 } else {
-                    drivingExperienceStarted = new Date(driversObject.drivers[index].driving_experience_started).toLocaleString();
+                    if (driversObject.drivers[index].driving_experience_started == null)
+                        driverLicenseIssue = null;
+                    else
+                        drivingExperienceStarted = new Date(driversObject.drivers[index].driving_experience_started).toLocaleString();
+
                 }
             } catch (e) {
                 drivingExperienceStarted = null;
@@ -88,7 +95,11 @@ function loadDriversObjectFromStorage(number_plate) {
                     driverLicenseIssue = (driversObject.drivers[index].driver_licenses[0].issue_date).substr(0, 4);
                     setCheckboxInput($(this).find('input[name=yearOnly]'));
                 } else {
-                    driverLicenseIssue = new Date(driversObject.drivers[index].driver_licenses[0].issue_date).toLocaleString();
+                    if (driversObject.drivers[index].driver_licenses[0].issue_date == null)
+                        driverLicenseIssue = null;
+                    else
+                        driverLicenseIssue = new Date(driversObject.drivers[index].driver_licenses[0].issue_date).toLocaleString();
+
                 }
             } catch (e) {
                 driverLicenseIssue = null;
@@ -99,7 +110,7 @@ function loadDriversObjectFromStorage(number_plate) {
             $(this).find('input[name=patronymic]').val(driversObject.drivers[index].patronymic);
 
             $(this).find('input[name=birth_date]').val(birthDate);
-            $(this).find('input[name=driver_licenses_numbers]').val(driversObject.drivers[index].driver_licenses[0].number+driversObject.drivers[index].driver_licenses[0].series);
+            $(this).find('input[name=driver_licenses_numbers]').val(driversObject.drivers[index].driver_licenses[0].number + driversObject.drivers[index].driver_licenses[0].series);
             $(this).find('input[name=driving_experience_started]').val(drivingExperienceStarted);
             $(this).find('input[name=previous_last_name]').val();
             $(this).find('input[name=previous_driver_licenses_numbers]').val();
