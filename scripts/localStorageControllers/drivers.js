@@ -54,7 +54,6 @@ function loadDriversObjectFromStorage(number_plate) {
     const driversObject = store.get(number_plate);
     console.log(store.get(number_plate));
 
-
     try {
         $('.input-group .form-select').val(driversObject.drivers.length);
         cloneDriver(driversObject.drivers.length);
@@ -62,6 +61,8 @@ function loadDriversObjectFromStorage(number_plate) {
             $(this).find('input[type=radio]').prop('checked', driversObject.drivers[index].additional_parameters.is_owner);
             $(this).find('input[name=yearOnly]').prop('checked', driversObject.drivers[index].additional_parameters.year_only);
             $(this).find('input[name=license_changed]').prop('checked', driversObject.drivers[index].additional_parameters.license_changed);
+            if (driversObject.drivers[index].additional_parameters.license_changed)
+                toggleDriverChangedLicense($(this).find('.alert'));
 
             let birthDate;
             try {
@@ -99,7 +100,6 @@ function loadDriversObjectFromStorage(number_plate) {
                         driverLicenseIssue = null;
                     else
                         driverLicenseIssue = new Date(driversObject.drivers[index].driver_licenses[0].issue_date).toLocaleString();
-
                 }
             } catch (e) {
                 driverLicenseIssue = null;

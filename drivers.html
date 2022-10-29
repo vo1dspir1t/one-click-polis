@@ -150,7 +150,7 @@
 
         //Чекбокс "Водитель менял права в течение года"
         $(document).on('click', 'input[name=license_changed]',function () {
-            $(this).closest('.alert').find('.row').slideToggle('fast');
+            toggleDriverChangedLicense($(this).closest('.alert'));
         });
 
         //Чекбокс "Помню только год"
@@ -182,6 +182,10 @@
 
         //Сохранение данных
         $(document).on('focusout', 'input', function () {
+            saveDriversObjectToStorage(number_plate);
+        });
+
+        $(document).on('change', 'input[type=checkbox]', function () {
             saveDriversObjectToStorage(number_plate);
         });
 
@@ -305,6 +309,10 @@
                 drivingExperienceInput.inputmask('remove');
                 break;
         }
+    }
+
+    function toggleDriverChangedLicense(selector) {
+        selector.find('.row').slideToggle('fast');
     }
 </script>
 <script>
