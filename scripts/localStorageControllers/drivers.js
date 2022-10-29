@@ -74,7 +74,7 @@ function loadDriversObjectFromStorage(number_plate) {
             try {
                 if (driversObject.drivers[index].additional_parameters.year_only) {
                     drivingExperienceStarted = (driversObject.drivers[index].driving_experience_started).substr(0, 4);
-                    setCheckboxInput($(this));
+                    setCheckboxInput($(this).find('input[name=yearOnly]'));
                 } else {
                     drivingExperienceStarted = new Date(driversObject.drivers[index].driving_experience_started).toLocaleString();
                 }
@@ -86,7 +86,7 @@ function loadDriversObjectFromStorage(number_plate) {
             try {
                 if (driversObject.drivers[index].additional_parameters.year_only) {
                     driverLicenseIssue = (driversObject.drivers[index].driver_licenses[0].issue_date).substr(0, 4);
-                    setCheckboxInput($(this));
+                    setCheckboxInput($(this).find('input[name=yearOnly]'));
                 } else {
                     driverLicenseIssue = new Date(driversObject.drivers[index].driver_licenses[0].issue_date).toLocaleString();
                 }
