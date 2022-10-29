@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>One Click Polis | Данные для расчёта</title>
+    <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./sources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./sources/general-styles.css">
+</head>
+<style>
+    @media (min-width: 1200px) {
+        .company-logo img {
+            max-width: 200px;
+        }
+    }
+</style>
+<body>
+
+<div class="container" style="max-width: 940px">
+    <div class="pageBar text-center d-flex flex-column align-items-center mt-5">
+        <h4>Данные для расчёта</h4>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item" aria-current="page"><a href="./results.html" class="text-decoration-none">Расчёт</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Оплата</li>
+            </ol>
+        </nav>
+        <div class="alert alert-warning text-start w-100" role="alert">
+            <h5>Финальные условия</h5>
+            <p>Оплата происходит на сайте страховой компании</p>
+            <div class="company row g-3 mb-3 align-items-center text-center">
+                <div class="company-logo col-lg-3 col-12">
+                    <img src="https://widget.agentapp.ru/media/integrated_companies/absolut.png"
+                         class="img-thumbnail rounded">
+                </div>
+                <div class="company-info col-lg-4 col-12">
+                    Mafin (Абсолют), ООО
+                </div>
+                <div class="company-price col-lg-3 col-12">
+                    10 846.40 Руб.
+                </div>
+                <div class="buy-btn col-lg-2 col-12">
+                    <button class="btn btn-success w-100">
+                        Оплатить
+                    </button>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-4 col-12">
+                    <h6><i class="bi bi-car-front"></i> Автомобиль:</h6>
+                    <span>Audi Q7, 2017 г.в, 249л.с.</span>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <h6><i class="bi bi-person-fill"></i> Водители:</h6>
+                    <span>1 (КБМ 1)</span>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <h6><i class="bi bi-watch"></i> Срок страхования:</h6>
+                    c <span id="valid_from">27.11.2021</span> по <span id="valid_to">26.11.2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="getLink" class="toast text-bg-dark" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body" style="font-size: 16px">
+            Подготавливаем ссылку на оплату, пожалуйста, ожидайте.
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="gotoPayment" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body" style="font-size: 16px">
+            Переходим по ссылке...
+        </div>
+    </div>
+</div>
+
+<script src="./sources/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
+<script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
+<script src="./sources/store2/store2.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $('button').click(function () {
+            $('#getLink').toast('show');
+            $(this).addClass('disabled');
+            setTimeout(() => {
+                $('#gotoPayment').toast('show');
+                $(this).removeClass('disabled');
+            }, 3000);
+        });
+    });
+</script>
+
+</body>
+</html>

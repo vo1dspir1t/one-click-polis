@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>One Click Polis | Данные для расчёта</title>
+    <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./sources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./sources/general-styles.css">
+</head>
+<style>
+    .wrapper {
+        max-width: 942px;
+    }
+</style>
+<body>
+
+<div class="container d-flex justify-content-center">
+    <div class="wrapper d-flex flex-column align-items-center mt-5 mb-3">
+        <div class="pageBar text-center">
+            <h4>Данные для расчёта</h4>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item" aria-current="page">Собственник</li>
+                    <li class="breadcrumb-item active">Подтверждение данных</li>
+                    <li class="breadcrumb-item" aria-current="page">Расчёт</li>
+                </ol>
+            </nav>
+            <div class="alert alert-warning text-start mx-auto" role="alert">
+                <i class="bi bi-info-circle-fill"></i> Проверьте данные, на основании которых будет оформлен полис
+            </div>
+        </div>
+        <div class="w-100">
+            <div class="alert alert-warning">
+                <a href="car.html" class="text-decoration-none"><h5>Срок и автомобиль <i class="bi bi-pencil-square"></i></h5></a>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item bg-transparent">Срок действия полиса: с <span
+                            id="valid_from">13.10.2022</span> по <span id="valid_to">12.10.2023</span></li>
+                    <li class="list-group-item bg-transparent">Автомобиль: <span id="auto">Audi Q7 2017г 249лс</span>
+                    </li>
+                    <li class="list-group-item bg-transparent">Гос. Номер: <span id="number_plate">А103ЕР797</span> |
+                        VIN: <span
+                                id="vin_number">XW8ZZZ4M3JG000358</span> | СТС/ПТС: <span id="credential_numbers">9932 653168</span>
+                    </li>
+                </ul>
+                <a href="./owner.html" class="text-decoration-none"><h5>Страхователь <i class="bi bi-pencil-square"></i></h5></a>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item bg-transparent">ФИО: <span id="insurance_full_name">Новикова Екатерина Владимировна</span>
+                    </li>
+                    <li class="list-group-item bg-transparent">Дата рождения: <span
+                            id="insurance_birth_date">27.07.1985</span>
+                    </li>
+                    <li class="list-group-item bg-transparent">Паспорт:
+                        <span id="insurance_credential_numbers">0705 579191</span>
+                        выдан
+                        <span id="insurance_credential_issue_date">03.08.2019</span>
+                    </li>
+                    <li class="list-group-item bg-transparent">Адрес регистрации:
+                        <span id="insurance_address_query">г Москва, ул Онежская, д 8 стр 42, 32</span>
+                    </li>
+                </ul>
+                <a href="./drivers.html" class="text-decoration-none"><h5>Водители <i class="bi bi-pencil-square"></i></h5></a>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item bg-transparent">ФИО: <span id="driver_full_name">Новикова Екатерина Владимировна</span>
+                    </li>
+                    <li class="list-group-item bg-transparent">Дата рождения: <span
+                            id="driver_birth_date">27.07.1985</span>
+                    </li>
+                    <li class="list-group-item bg-transparent">В/У:
+                        <span id="driver_licenses_numbers">0705 579191</span>
+                        стаж с
+                        <span id="driving_experience_started">31.12.2005</span>
+                    </li>
+                </ul>
+                <h5>Куда отправлять полис?</h5>
+                <div id="email-input">
+                    <p>Отправим полис на Email:</p>
+                    <input type="text" class="form-control" name="sendInsuranceTo" placeholder="example@gmail.com" required>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" name="back" class="btn btn-outline-secondary">Назад</button>
+                <button type="button" name="next" class="btn btn-success">Продолжить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./sources/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
+<script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
+<script src="./sources/store2/store2.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $('input[name=sendInsuranceTo]').inputmask({
+            alias: "email",
+            jitMasking: true,
+            showMaskOnFocus: false,
+            showMaskOnHover: false
+        });
+
+        //Кнопки перехода по страницам
+        $('button[name=back]').click(() => {
+            window.location.href = './owner.html';
+        });
+
+        $('button[name=next]').click(() => {
+            $('#email-input').addClass('was-validated');
+            if ($('input[name=sendInsuranceTo]').inputmask("isComplete")) {
+                window.location.href = './results.html';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>One Click Polis | Данные для расчёта</title>
+    <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./sources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./sources/general-styles.css">
+</head>
+<style>
+    .wrapper {
+        max-width: 942px;
+    }
+</style>
+<body>
+
+<div class="container d-flex justify-content-center">
+    <div class="wrapper d-flex flex-column align-items-center mt-5 mb-3">
+        <div class="pageBar text-center">
+            <h4>Данные для расчёта</h4>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item" aria-current="page">Автомобиль</li>
+                    <li class="breadcrumb-item active">Водители</li>
+                    <li class="breadcrumb-item" aria-current="page">Собственник</li>
+                </ol>
+            </nav>
+            <div class="alert alert-warning text-start mx-auto" role="alert">
+                <i class="bi bi-info-circle-fill"></i> По ФИО и номеру прав страховые компании проверяют историю вашего
+                вождения, чтобы применить скидку или
+                надбавку к страховому полису (КБМ). Указывайте данные корректно, чтобы получить точную цену
+            </div>
+        </div>
+        <div class="input-group mb-3 w-auto align-self-start">
+            <span class="input-group-text bg-white">Количество водителей: </span>
+            <select class="form-select">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <!--<option value="0">Без ограничений</option>-->
+            </select>
+        </div>
+        <form method="post" action="./owner.html" class="needs-validation w-100" novalidate>
+            <div class="drivers">
+                <div class="driver mt-3">
+                    <h4>Водитель 1</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Driver" checked>
+                        <label class="form-check-label" for="Driver">
+                            Собственник
+                        </label>
+                    </div>
+                    <br>
+                    <div class="row g-3 mb-3">
+                        <div class="col-lg-4 col-12">
+                            <label for="last_name" class="form-label">Фамилия</label>
+                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Иванов" required>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label for="first_name" class="form-label">Имя</label>
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Иван" required>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <label for="patronymic" class="form-label">Отчество</label>
+                            <input type="text" class="form-control" name="patronymic" id="patronymic" placeholder="Иванович" required>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-lg-4 col-12">
+                            <label for="birth_date" class="form-label">Дата рождения</label>
+                            <input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="dd.mm.yyyy" required>
+                        </div>
+                        <div class="col-lg-8 col-12">
+                            <label for="driver_licenses_numbers" class="form-label">Серия и номер ВУ</label>
+                            <input type="text" class="form-control" name="driver_licenses_numbers"
+                                   id="driver_licenses_numbers" placeholder="1234 567890" required>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-lg-4 col-12">
+                            <label for="driving_experience_started" class="form-label">Дата выдачи первых прав</label>
+                            <input type="text" class="form-control" name="driving_experience_started"
+                                   id="driving_experience_started" placeholder="dd.mm.yyyy" required>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="" id="yearOnly" name="yearOnly">
+                                <label class="form-check-label" for="yearOnly">
+                                    Помню только год
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="license_changed"
+                                   name="license_changed">
+                            <label class="form-check-label" for="license_changed">
+                                Водитель менял права в течение года
+                            </label>
+                        </div>
+                        <div class="row g-3 mb-3" style="display: none">
+                            <p>
+                                Чтобы скидка за безопасное вождение (КБМ) применилась, укажите данные прошлого водительского
+                                удостоверения. Их можно найти на обороте новых прав или в прошлом полисе
+                            </p>
+                            <div class="col-lg-6 col-12">
+                                <label for="previous_last_name" class="form-label">Фамилия в прошлом ВУ</label>
+                                <input type="text" class="form-control" name="previous_last_name" id="previous_last_name" placeholder="Иванов">
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <label for="previous_driver_licenses_numbers" class="form-label">Серия и номер ВУ</label>
+                                <input type="text" class="form-control" name="previous_driver_licenses_numbers"
+                                       placeholder="1234 567890" id="previous_driver_licenses_numbers">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" name="back" class="btn btn-outline-secondary">Назад</button>
+                <button type="submit" name="next" class="btn btn-success">Продолжить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="./sources/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
+<script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
+<script src="./sources/store2/store2.min.js"></script>
+<script src="./scripts/localStorageControllers/drivers.js"></script>
+<script>
+    $(document).ready(() => {
+        let number_plate;
+        $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;});
+
+        reloadMasks($(document));
+        getDriversData();
+
+        //Добавление и удаление водителей
+        $('.form-select').change(function () {
+            cloneDriver(parseInt(this.value));
+        });
+
+        //Чекбокс "Водитель менял права в течение года"
+        $(document).on('click', 'input[name=license_changed]',function () {
+            $(this).closest('.alert').find('.row').slideToggle('fast');
+        });
+
+        //Чекбокс "Помню только год"
+        $(document).on('click', 'input[name=yearOnly]', function () {
+            setCheckboxInput($(this));
+        });
+
+        //Кнопки перехода по страницам
+        $('button[name=back]').click(() => {
+            window.location.href = './car.html';
+        });
+
+        $('input:disabled').dblclick(function () {
+            toggleInputs(false);
+        });
+
+        $('.needs-validation').submit(function (e) {
+            toggleInputs(false);
+            if (!this.checkValidity()) {
+                scrollToInvalidInput();
+            }
+            $(this).addClass('was-validated');
+            e.preventDefault();
+            e.stopPropagation();
+            if (this.checkValidity() || parseInt($('select').val()) == 0 ) {
+                window.location.href = './owner.html';
+            }
+        });
+
+        //Сохранение данных
+        $(document).on('focusout', 'input', function () {
+            saveDriversObjectToStorage(number_plate);
+        });
+
+        $('select').change(function () {
+            saveDriversObjectToStorage(number_plate);
+        });
+    });
+
+    //Маски для полей ввода
+    function reloadMasks(selector) {
+        $(selector).find('input[name=driver_licenses_numbers]').inputmask({
+            "mask": "9999 999999",
+            placeholder: "1234 567890",
+            clearMaskOnLostFocus: true
+        });
+
+        $(selector).find('input[name=previous_driver_licenses_numbers]').inputmask({
+            "mask": "9999 999999",
+            placeholder: "1234 567890",
+            clearMaskOnLostFocus: true
+        });
+
+        $(selector).find('#driving_experience_started, #birth_date').inputmask({
+            alias: "datetime",
+            inputFormat: "dd.mm.yyyy",
+            outputFormat: "yyyy-mm-dd",
+            clearIncomplete: true
+        });
+    }
+
+    function scrollToInvalidInput() {
+        $('html, body').animate({
+            scrollTop: $('.form-control:invalid').first().offset().top-$(window).height()/2
+        }, 250);
+    }
+
+    function toggleInputs(value) {
+        $('.form-control').each(function () {
+            $(this).prop("disabled", value);
+        });
+
+        $('select').each(function () {
+            $(this).prop("disabled", value);
+        });
+    }
+
+    function cloneDriver(selectValue) {
+        let driversCount = $('.drivers').find('.driver').length;
+        let currentValue = selectValue;
+        $('.drivers').show('slow');
+        if (currentValue > driversCount && currentValue > 0) {
+            $.each(new Array(currentValue-driversCount), function (index) {
+                $('form .driver:first').clone().appendTo('.drivers');
+                let currentDriverNum = index+driversCount+1;
+                let currentDriver = $('form .driver:last');
+                reloadMasks(currentDriver);
+
+                //Заменяем данные в клоне
+                currentDriver.find('h4').text(`Водитель ${currentDriverNum}`);
+
+                currentDriver.find('input[required]').each(function (number, element) {
+                    $(element).attr('id', `${$(element).attr('id')}_${currentDriverNum}`);
+                    $(element).attr('name', `${$(element).attr('name')}`);
+                    $(element).val('');
+                });
+
+                currentDriver.find('.alert .row input[type=text]').each(function (number, element) {
+                    $(element).attr('id', `${$(element).attr('id')}_${currentDriverNum}`);
+                    $(element).attr('name', `${$(element).attr('name')}`);
+                    $(element).val('');
+                });
+
+                currentDriver.find('label').each(function (number, element) {
+                    $(element).attr('for', `${$(element).attr('for')}_${currentDriverNum}`);
+                });
+
+                currentDriver.find('input[type=radio]').each(function (number, element) {
+                    $(element).prop('checked', false);
+                    $(element).attr('id', `${$(element).attr('id')}_${currentDriverNum}`);
+                });
+
+                currentDriver.find('input[type=checkbox]').each(function (number, element) {
+                    $(element).prop('checked', false);
+                    $(element).attr('id', `${$(element).attr('id')}_${currentDriverNum}`);
+                });
+            });
+        } else if (currentValue != 0) {
+            $.each(new Array(driversCount-currentValue), function () {
+                $('form .driver:last').remove();
+            });
+        } else {
+            $('.drivers').hide('slow');
+        }
+        $('form .driver:first').find('input[name=flexRadioDefault]').prop('checked', true);
+    }
+
+    function setCheckboxInput(selector) {
+        let drivingExperienceInput = selector.closest('.col-lg-4').find('input[name=driving_experience_started]');
+        let checkbox = selector.closest('.col-lg-4').find('input[name=yearOnly]');
+        switch (checkbox.prop('checked')) {
+            case false:
+                drivingExperienceInput.val('');
+                drivingExperienceInput.inputmask({
+                    alias: "datetime",
+                    inputFormat: "dd.mm.yyyy",
+                    outputFormat: "yyyy-mm-dd"
+                });
+                drivingExperienceInput.attr('placeholder', 'dd.mm.yyyy');
+                break;
+            case true:
+                drivingExperienceInput.val('');
+                drivingExperienceInput.inputmask({
+                    "mask": "9999",
+                    placeholder: "1999",
+                    clearMaskOnLostFocus: true
+                });
+                drivingExperienceInput.attr('placeholder', '1999');
+                break;
+            default:
+                drivingExperienceInput.val('');
+                drivingExperienceInput.inputmask('remove');
+                break;
+        }
+    }
+</script>
+<script>
+    // Получение данных водителей
+    function getDriversData() {
+        let number_plate;
+        $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
+            if (store.has(number_plate))
+                loadDriversObjectFromStorage(number_plate);
+        });
+    }
+</script>
+</body>
+</html>

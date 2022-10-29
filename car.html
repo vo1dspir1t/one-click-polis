@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>One Click Polis | Данные для расчёта</title>
+    <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./sources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./sources/general-styles.css">
+</head>
+<style>
+    form {
+        max-width: 940px;
+    }
+
+    .dictionary {
+        position: absolute;
+        max-height: 250px;
+        overflow-y: scroll;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: var(--bs-list-group-border-radius);
+        width: calc(100% - 20px);
+        top: 5rem;
+        z-index: 500;
+    }
+
+    .custom-tooltip {
+        --bs-tooltip-bg: var(--bs-danger);
+        --bs-tooltip-max-width: 500px;
+    }
+
+    .form-control:read-only {
+        background: #e9ecef;
+    }
+</style>
+<body>
+
+<div class="container">
+    <div class="d-flex flex-column align-items-center mt-5 mb-3">
+        <div class="pageBar text-center">
+            <h4>Данные для расчёта</h4>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item active">Автомобиль</li>
+                    <li class="breadcrumb-item" aria-current="page">Водители</li>
+                    <li class="breadcrumb-item" aria-current="page">Собственник</li>
+                </ol>
+            </nav>
+            <div class="alert alert-secondary" role="alert">
+                Чтобы рассчитать предварительную стоимость неоходимо заполнить поля ниже.
+            </div>
+        </div>
+        <form method="post" action="./drivers.html" class="needs-validation mt-5" novalidate>
+            <h4 class="text-center mb-3">Данные автомобиля</h4>
+            <div class="data_loading_status text-center" style="display: none">
+                <p>Загрузка данных</p>
+                <div class="progress mb-5">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-4 col-12">
+                    <label for="car_type" class="form-label">Категория ТС</label>
+                    <select id="car_type" name="car_type" class="form-select">
+                        <!--<option value="A">А</option>-->
+                        <option value="B" selected>B</option>
+                        <!--<option value="C">C</option>-->
+                    </select>
+                </div>
+                <div class="col-lg-4 col-12 position-relative">
+                    <label for="car_brand" class="form-label">Марка</label>
+                    <input type="text" class="form-control" name="car_brand" id="car_brand" placeholder="Nissan"
+                           required>
+                    <ul class="dictionary list-group shadow" style="display: none">
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-12 position-relative">
+                    <label for="car_model" class="form-label">Модель</label>
+                    <input type="text" class="form-control" name="car_model" id="car_model" placeholder="X-Trail"
+                           required data-bs-placement="top" data-bs-title="Пожалуйста, выберите модель из списка ниже"
+                           data-bs-custom-class="custom-tooltip">
+                    <ul class="dictionary list-group shadow" style="display: none">
+                    </ul>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-4 col-12">
+                    <label for="manufacturing_year" class="form-label">Год выпуска</label>
+                    <input type="text" class="form-control" name="manufacturing_year" id="manufacturing_year"
+                           placeholder="0000" required>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <label for="engine_power" class="form-label">Мощность двигателя (л.с.)</label>
+                    <input type="text" class="form-control" name="engine_power" id="engine_power" placeholder="00"
+                           required>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <label for="number_plate" class="form-label">Гос. номер</label>
+                    <input type="text" class="form-control" name="number_plate" id="number_plate"
+                           placeholder="А 999 АА 99" required>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-lg-4 col-12">
+                    <label for="identification_type" class="form-label">Идентификатор</label>
+                    <select id="identification_type" name="identification_type" class="form-select">
+                        <option value="vin_number" selected>VIN</option>
+                        <!--<option value="car_body_number">Кузов</option>
+                        <option value="chassis_number">Шасси</option>-->
+                    </select>
+                </div>
+                <div class="col-lg-8 col-12">
+                    <label for="identification_number" class="form-label">Номер VIN</label>
+                    <input type="text" class="form-control" name="identification_number" id="identification_number"
+                           placeholder="WBAZZZ8A9KA123456"
+                           required>
+                </div>
+            </div>
+            <div class="alert alert-warning my-5" role="alert">
+                <p>Если вы только что купили автомобиль и будете ставить его на учёт со сменой номера — указывайте
+                    обязательно документ — ПТС. После получения нового рег. знака вы сможете вписать его в полис. Если
+                    смены номера не планируется — можете указать любой тип документа.</p>
+                <div class="row g-3">
+                    <div class="col-lg-4 col-12">
+                        <label for="credential_type" class="form-label">Документ на автомобиль</label>
+                        <select id="credential_type" name="credential_type" class="form-select">
+                            <option value="VEHICLE_PASSPORT">ПТС (Паспорт ТС)</option>
+                            <option value="VEHICLE_REGISTRATION" selected>СТС (Свидетельство)</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <label for="credential_numbers" class="form-label">Номер документа</label>
+                        <input type="text" class="form-control" name="credential_numbers" id="credential_numbers"
+                               placeholder="99 99 999999" required>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <label for="credential_issue_date" class="form-label">Дата выдачи документа</label>
+                        <input type="text" class="form-control" name="credential_issue_date" id="credential_issue_date"
+                               placeholder="dd.mm.yyyy"
+                               required>
+                    </div>
+                </div>
+            </div>
+            <div class="border rounded-2 p-3 shadow-sm mb-5">
+                <h6>Период страхования</h6>
+                <div class="row g-3 align-items-center">
+                    <div class="col-lg-8 col-12">
+                        <div class="alert alert-warning">
+                            Рекомендуемая дата начала страхования не ранее <span id="valid_from_span"></span>, потому
+                            что большинство страховых
+                            компаний не берут на страхование с датой ранее чем 4 дня от даты расчета
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 text-center">
+                        <label class="text-muted" for="valid_from">Дата начала</label>
+                        <input type="text" class="form-control" id="valid_from" name="valid_from"
+                               placeholder="dd.mm.yyyy" required>
+                        <span class="text-muted">Будет дейстовать один год</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" name="back" class="btn btn-outline-secondary">Назад</button>
+                <button type="submit" name="next" class="btn btn-success">Продолжить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="getDataMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body" style="font-size: 16px">
+
+        </div>
+    </div>
+</div>
+
+<script src="./sources/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
+<script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
+<script src="./sources/store2/store2.min.js"></script>
+<script src="./scripts/localStorageControllers/car.js"></script>
+<script src="./scripts/pageControllers/car.js"></script>
+<script src="./scripts/ajaxControllers/car.js"></script>
+</body>
+</html>
