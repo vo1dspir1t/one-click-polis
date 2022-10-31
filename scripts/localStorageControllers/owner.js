@@ -54,7 +54,8 @@ function saveOwnerObjectToStorage(number_plate) {
             address_flat: $('input[name=address_query_flat]').val()
         }],
         additional_parameters: {
-            has_not_flat: $('#no_flat').is(':checked')
+            has_not_flat: $('#no_flat').is(':checked'),
+            isOwnerEqualsWithInsurance: $('#flexCheckDefault').is(':checked')
         }
     }
     store.add(number_plate, {owner: ownerObject});
@@ -86,6 +87,19 @@ function loadOwnerObjectFromStorage(number_plate) {
     }
 
     try {
+        if (!ownerObject.owner.additional_parameters.isOwnerEqualsWithInsurance) {
+            $('.alert .alertBox').slideToggle('slow');
+            $('.alert .alertBox').find('input').each(function (index, element) {
+                $(element).prop('required', !$(element).prop('required'));
+            });
+        }
+
+        if (ownerObject.owner.additional_parameters.has_not_flat) {
+            toggleOwnerFlatInput();
+        } else {
+            $('input[name=address_query_flat]').val(ownerObject.owner.address[0].address_flat);
+        }
+
         $('input[name=last_name]').val(ownerObject.owner.last_name);
         $('input[name=first_name]').val(ownerObject.owner.first_name);
         $('input[name=patronymic]').val(ownerObject.owner.patronymic);
@@ -96,8 +110,8 @@ function loadOwnerObjectFromStorage(number_plate) {
         $('input[name=credential_issue_point]').val(ownerObject.owner.credential[0].issue_point);
         $('input[name=address_query_street]').val(ownerObject.owner.address[0].address_street);
         $('input[name=address_query_house]').val(ownerObject.owner.address[0].address_house);
-        $('input[name=address_query_flat]').val(ownerObject.owner.address[0].address_flat);
-
+        $('#flexCheckDefault').prop('checked', ownerObject.owner.additional_parameters.isOwnerEqualsWithInsurance);
+        $('#no_flat').prop('checked', ownerObject.owner.additional_parameters.has_not_flat);
     } catch (e) {
         console.log(e);
         store.add(number_plate, {owner: [{}]});

@@ -289,9 +289,7 @@
         });
 
         $('#no_flat').click(() => {
-            let flatInput = $('input[name=address_query_flat]');
-            flatInput.prop('disabled', !flatInput.prop('disabled'));
-            flatInput.prop('required', !flatInput.prop('required'));
+            toggleOwnerFlatInput();
         })
 
         $('#insurance_no_flat').click(() => {
@@ -347,6 +345,12 @@
             saveOwnerObjectToStorage(number_plate);
         });
     });
+
+    function toggleOwnerFlatInput() {
+        let flatInput = $('input[name=address_query_flat]');
+        flatInput.prop('disabled', !flatInput.prop('disabled'));
+        flatInput.prop('required', !flatInput.prop('required'));
+    }
 </script>
 
 </body>
