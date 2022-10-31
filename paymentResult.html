@@ -68,7 +68,7 @@
             <h5><i class="bi bi-stopwatch-fill fs-5"></i> Ожидается оплата</h5>
             <p>Для завершения создания страховки, пожалуйста, нажмите кнопку "Оплатить" для перехода на страницу
                 оплаты.</p>
-            <p><strong>Осталось времени для оплаты: <span id="payment-timer"></span></strong></p>
+            <p><strong>Осталось времени для оплаты: <span id="payment-timer">30:00</span></strong></p>
         </div>
         <div class="alert alert-danger w-100 text-start">
             <h5><i class="bi bi-x-circle-fill fs-5"></i> Ошибка оплаты</h5>
@@ -76,13 +76,13 @@
         </div>
         <div class="alert alert-warning w-100 text-start">
             <h5><i class="bi bi-exclamation-circle-fill fs-5"></i> Время действия ссылки на оплату истекает</h5>
-            <p>Времени на оплату осталось совсем немного. Не переживайте, вы так же можете <a href="#">оплатить полис по
+            <p>Времени на оплату осталось совсем немного. Не переживайте, вы так же можете <a href="javascript:prepareLink()">оплатить полис по
                 новой ссылке</a></p>
         </div>
         <div class="alert alert-success w-100 text-start">
             <h5><i class="bi bi-check-circle-fill fs-5"></i> Полис успешно оплачен</h5>
             <p>На почту, указанную при оформлении страховки отправлен документ. Так же вы можете скачать полис на нашем сайте: <a
-                    href="#">Скачать</a></p>
+                    href="javascript:void(0)">Скачать</a></p>
         </div>
     </div>
 </div>
@@ -110,6 +110,12 @@
 <script src="./sources/jquery.countdown/jquery.countdown.min.js"></script>
 <script>
     $(document).ready(() => {
+        $('button').click(function () {
+            prepareLink();
+        });
+    });
+
+    function restartTimer() {
         let finalDate = new Date();
         finalDate.setMinutes(finalDate.getMinutes() + 30);
 
@@ -118,16 +124,17 @@
                 event.strftime('%M:%S')
             );
         });
+    }
 
-        $('button').click(function () {
-            $('#getLink').toast('show');
-            $(this).addClass('disabled');
-            setTimeout(() => {
-                $('#gotoPayment').toast('show');
-                $(this).removeClass('disabled');
-            }, 3000);
-        });
-    });
+    function prepareLink() {
+        $('#getLink').toast('show');
+        restartTimer();
+        $('button').addClass('disabled');
+        setTimeout(() => {
+            $('#gotoPayment').toast('show');
+            $('button').removeClass('disabled');
+        }, 3000);
+    }
 </script>
 
 </body>
