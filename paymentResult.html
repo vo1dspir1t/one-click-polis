@@ -25,7 +25,7 @@
         <h4>Данные для расчёта</h4>
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item" aria-current="page"><a href="./results.html" class="text-decoration-none">Расчёт</a></li>
+                <li class="breadcrumb-item" aria-current="page">Расчёт</li>
                 <li class="breadcrumb-item active" aria-current="page">Оплата</li>
             </ol>
         </nav>
@@ -64,6 +64,26 @@
                 </div>
             </div>
         </div>
+        <div class="alert alert-secondary w-100 text-start">
+            <h5><i class="bi bi-stopwatch-fill fs-5"></i> Ожидается оплата</h5>
+            <p>Для завершения создания страховки, пожалуйста, нажмите кнопку "Оплатить" для перехода на страницу
+                оплаты.</p>
+            <p><strong>Осталось времени для оплаты: <span id="payment-timer"></span></strong></p>
+        </div>
+        <div class="alert alert-danger w-100 text-start">
+            <h5><i class="bi bi-x-circle-fill fs-5"></i> Ошибка оплаты</h5>
+            <p>Оплата не была завершена. Пожалуйста, нажмите кнопку "Оплатить" ещё раз.</p>
+        </div>
+        <div class="alert alert-warning w-100 text-start">
+            <h5><i class="bi bi-exclamation-circle-fill fs-5"></i> Время действия ссылки на оплату истекает</h5>
+            <p>Времени на оплату осталось совсем немного. Не переживайте, вы так же можете <a href="#">оплатить полис по
+                новой ссылке</a></p>
+        </div>
+        <div class="alert alert-success w-100 text-start">
+            <h5><i class="bi bi-check-circle-fill fs-5"></i> Полис успешно оплачен</h5>
+            <p>На почту, указанную при оформлении страховки отправлен документ. Так же вы можете скачать полис на нашем сайте: <a
+                    href="#">Скачать</a></p>
+        </div>
     </div>
 </div>
 
@@ -87,8 +107,18 @@
 <script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
 <script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
 <script src="./sources/store2/store2.min.js"></script>
+<script src="./sources/jquery.countdown/jquery.countdown.min.js"></script>
 <script>
     $(document).ready(() => {
+        let finalDate = new Date();
+        finalDate.setMinutes(finalDate.getMinutes() + 30);
+
+        $('#payment-timer').countdown(finalDate, function (event) {
+            $(this).text(
+                event.strftime('%M:%S')
+            );
+        });
+
         $('button').click(function () {
             $('#getLink').toast('show');
             $(this).addClass('disabled');
