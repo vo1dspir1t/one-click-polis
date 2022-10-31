@@ -63,6 +63,8 @@ function saveDriversObjectToStorage(number_plate) {
 function loadDriversObjectFromStorage(number_plate) {
     const driversObject = store.get(number_plate);
 
+    console.log(driversObject)
+
     try {
         $('.input-group .form-select').val(driversObject.drivers.length);
         cloneDriver(driversObject.drivers.length);

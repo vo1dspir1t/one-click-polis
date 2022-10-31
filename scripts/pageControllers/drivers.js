@@ -1,9 +1,9 @@
 $(document).ready(() => {
     let number_plate;
-    $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;});
-
-    reloadMasks($(document));
-    getDriversData();
+    $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
+        getDriversData();
+        reloadMasks($(document));
+    });
 
     //Добавление и удаление водителей
     $('.form-select').change(function () {

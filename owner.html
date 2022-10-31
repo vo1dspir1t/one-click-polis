@@ -238,6 +238,11 @@
 <script src="./scripts/localStorageControllers/owner.js"></script>
 <script>
     $(document).ready(() => {
+        let number_plate;
+        $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
+            loadOwnerObjectFromStorage(number_plate);
+        });
+
         //Маски для полей ввода
         $('input[name=credential_numbers],input[name=insurance_credential_numbers]').inputmask({
             "mask": "9999 999999",
@@ -328,6 +333,19 @@
                 $(this).prop("disabled", value);
             });
         }
+
+        //Сохранение данных
+        $(document).on('focusout', 'input', function () {
+            saveOwnerObjectToStorage(number_plate);
+        });
+
+        $(document).on('change', 'input[type=checkbox]', function () {
+            saveOwnerObjectToStorage(number_plate);
+        });
+
+        $('select').change(function () {
+            saveOwnerObjectToStorage(number_plate);
+        });
     });
 </script>
 

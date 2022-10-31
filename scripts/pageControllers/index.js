@@ -5,9 +5,13 @@ $(document).ready(() => {
     if (store.size() == 0) {
         $('#results').toggle();
     } else {
-        store.each(function (key, value) {
-            $('#savedResults').append(`<li><a class="text-decoration-none" href="javascript:void(0)" data-key="${key}">${value.car.car_brand} ${value.car.car_model} (${key})</a></li>`);
-        });
+        try {
+            store.each(function (key, value) {
+                $('#savedResults').append(`<li><a class="text-decoration-none" href="javascript:void(0)" data-key="${key}">${value.car.car_brand} ${value.car.car_model} (${key})</a></li>`);
+            });
+        } catch (e) {
+            store(false);
+        }
     }
 
     $(document).on('click', '#savedResults a', function () {
