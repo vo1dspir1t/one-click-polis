@@ -66,7 +66,6 @@ function loadOwnerObjectFromStorage(number_plate) {
 
     let birth_date;
     let issue_date;
-    console.log(ownerObject)
 
     try {
         if (ownerObject.owner.birth_date != null)
@@ -86,6 +85,11 @@ function loadOwnerObjectFromStorage(number_plate) {
         issue_date = null;
     }
 
+    $('input[name=last_name]').val(ownerObject.owner.last_name);
+    $('input[name=first_name]').val(ownerObject.owner.first_name);
+    $('input[name=patronymic]').val(ownerObject.owner.patronymic);
+    $('input[name=birth_date]').val(birth_date);
+
     try {
         if (!ownerObject.owner.additional_parameters.isOwnerEqualsWithInsurance) {
             $('.alert .alertBox').slideToggle('slow');
@@ -100,10 +104,6 @@ function loadOwnerObjectFromStorage(number_plate) {
             $('input[name=address_query_flat]').val(ownerObject.owner.address[0].address_flat);
         }
 
-        $('input[name=last_name]').val(ownerObject.owner.last_name);
-        $('input[name=first_name]').val(ownerObject.owner.first_name);
-        $('input[name=patronymic]').val(ownerObject.owner.patronymic);
-        $('input[name=birth_date]').val(birth_date);
         $('select[name=gender]').val(ownerObject.owner.gender);
         $('input[name=credential_numbers]').val(ownerObject.owner.credential[0].number+ownerObject.owner.credential[0].series);
         $('input[name=credential_issue_date]').val(issue_date);
@@ -114,6 +114,5 @@ function loadOwnerObjectFromStorage(number_plate) {
         $('#no_flat').prop('checked', ownerObject.owner.additional_parameters.has_not_flat);
     } catch (e) {
         console.log(e);
-        store.add(number_plate, {owner: [{}]});
     }
 }

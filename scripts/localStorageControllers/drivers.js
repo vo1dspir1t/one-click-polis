@@ -54,7 +54,6 @@ function saveDriversObjectToStorage(number_plate) {
             }
             store.add(number_plate, {owner: ownerObject});
         }
-
         DriversArray.push(driverObject);
     });
     store.add(number_plate, {drivers: DriversArray});
@@ -62,8 +61,6 @@ function saveDriversObjectToStorage(number_plate) {
 
 function loadDriversObjectFromStorage(number_plate) {
     const driversObject = store.get(number_plate);
-
-    console.log(driversObject)
 
     try {
         $('.input-group .form-select').val(driversObject.drivers.length);
