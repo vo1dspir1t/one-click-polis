@@ -59,10 +59,14 @@ function saveOwnerObjectToStorage(number_plate) {
         }
     }
     store.add(number_plate, {owner: ownerObject});
+
+    console.log(store.get(number_plate))
 }
 
 function loadOwnerObjectFromStorage(number_plate) {
     const ownerObject = store.get(number_plate);
+
+    console.log(ownerObject)
 
     let birth_date;
     let issue_date;
@@ -92,7 +96,7 @@ function loadOwnerObjectFromStorage(number_plate) {
 
     try {
         if (!ownerObject.owner.additional_parameters.isOwnerEqualsWithInsurance) {
-            $('.alert .alertBox').slideToggle('slow');
+            $('.alert .alertBox').toggle();
             $('.alert .alertBox').find('input').each(function (index, element) {
                 $(element).prop('required', !$(element).prop('required'));
             });
