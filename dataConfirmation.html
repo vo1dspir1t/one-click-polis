@@ -91,7 +91,6 @@
         let number_plate;
         $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
             loadData(number_plate);
-            console.log(store.get(number_plate))
         });
 
         $('input[name=sendInsuranceTo]').inputmask({
