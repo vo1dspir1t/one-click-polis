@@ -58,14 +58,10 @@ function saveInsurantObjectToStorage(number_plate) {
         }
     }
     store.add(number_plate, {insurant: insurantObject});
-
-    console.log(store.get(number_plate))
 }
 
 function loadInsurantObjectFromStorage(number_plate) {
     const insurantObject = store.get(number_plate);
-
-    console.log(insurantObject)
 
     let birth_date;
     let issue_date;
@@ -88,18 +84,19 @@ function loadInsurantObjectFromStorage(number_plate) {
         issue_date = null;
     }
 
-    $('input[name=insurance_last_name]').val(insurantObject.insurant.last_name);
-    $('input[name=insurance_first_name]').val(insurantObject.insurant.first_name);
-    $('input[name=insurance_patronymic]').val(insurantObject.insurant.patronymic);
-    $('input[name=insurance_birth_date]').val(birth_date);
-
     try {
         if (insurantObject.insurant.additional_parameters.has_not_flat) {
-            toggleOwnerFlatInput();
+            let flatInput = $('input[name=insurance_address_query_flat]');
+            flatInput.prop('disabled', !flatInput.prop('disabled'));
+            flatInput.prop('required', !flatInput.prop('required'));
         } else {
             $('input[name=insurance_address_query_flat]').val(insurantObject.insurant.address[0].address_flat);
         }
 
+        $('input[name=insurance_last_name]').val(insurantObject.insurant.last_name);
+        $('input[name=insurance_first_name]').val(insurantObject.insurant.first_name);
+        $('input[name=insurance_patronymic]').val(insurantObject.insurant.patronymic);
+        $('input[name=insurance_birth_date]').val(birth_date);
         $('select[name=insurance_gender]').val(insurantObject.insurant.gender);
         $('input[name=insurance_credential_numbers]').val(insurantObject.insurant.credential[0].number+insurantObject.insurant.credential[0].series);
         $('input[name=insurance_credential_issue_date]').val(issue_date);

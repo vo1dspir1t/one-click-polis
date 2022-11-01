@@ -58,6 +58,11 @@ function saveOwnerObjectToStorage(number_plate) {
             isOwnerEqualsWithInsurance: $('#flexCheckDefault').is(':checked')
         }
     }
+    if (!ownerObject.additional_parameters.isOwnerEqualsWithInsurance)
+        saveInsurantObjectToStorage(number_plate);
+    else
+        store.add(number_plate, {insurant: ownerObject});
+
     store.add(number_plate, {owner: ownerObject});
 
     console.log(store.get(number_plate))
@@ -100,6 +105,7 @@ function loadOwnerObjectFromStorage(number_plate) {
             $('.alert .alertBox').find('input').each(function (index, element) {
                 $(element).prop('required', !$(element).prop('required'));
             });
+            loadInsurantObjectFromStorage(number_plate);
         }
 
         if (ownerObject.owner.additional_parameters.has_not_flat) {

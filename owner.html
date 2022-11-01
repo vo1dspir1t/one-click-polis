@@ -283,6 +283,7 @@
             $('.alert .alertBox').find('input').each(function (index, element) {
                 $(element).prop('required', !$(element).prop('required'));
             });
+            loadInsurantObjectFromStorage(number_plate);
         });
 
         $('#agreesWithInfo').click(() => {
