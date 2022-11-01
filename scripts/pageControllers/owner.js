@@ -2,6 +2,19 @@ $(document).ready(() => {
     let number_plate;
     $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
         loadOwnerObjectFromStorage(number_plate);
+
+        //Сохранение данных о сроке действия полиса
+        let validFrom = new Date();
+        let validTo = new Date();
+        validFrom.setDate(validFrom.getDate() + 4);
+        validTo.setDate(validTo.getDay()+367);
+
+        store.add(number_plate, {
+            periods: {
+                start_date: validFrom.toISOString().substr(0,10),
+                end_date: validTo.toISOString().substr(0,10)
+            }
+        });
     });
 
     //Маски для полей ввода

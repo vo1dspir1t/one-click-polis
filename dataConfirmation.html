@@ -35,7 +35,7 @@
         </div>
         <div class="w-100">
             <div class="alert alert-warning">
-                <a href="car.html" class="text-decoration-none"><h5>Срок и автомобиль <i class="bi bi-pencil-square"></i></h5></a>
+                <a href="car" class="text-decoration-none"><h5>Срок и автомобиль <i class="bi bi-pencil-square"></i></h5></a>
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item bg-transparent">Срок действия полиса: с <span
                             id="valid_from">13.10.2022</span> по <span id="valid_to">12.10.2023</span></li>
@@ -46,7 +46,7 @@
                                 id="vin_number">XW8ZZZ4M3JG000358</span> | СТС/ПТС: <span id="credential_numbers">9932 653168</span>
                     </li>
                 </ul>
-                <a href="./owner.html" class="text-decoration-none"><h5>Страхователь <i class="bi bi-pencil-square"></i></h5></a>
+                <a href="./owner" class="text-decoration-none"><h5>Страхователь <i class="bi bi-pencil-square"></i></h5></a>
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item bg-transparent">ФИО: <span id="insurance_full_name">Новикова Екатерина Владимировна</span>
                     </li>
@@ -62,19 +62,10 @@
                         <span id="insurance_address_query">г Москва, ул Онежская, д 8 стр 42, 32</span>
                     </li>
                 </ul>
-                <a href="./drivers.html" class="text-decoration-none"><h5>Водители <i class="bi bi-pencil-square"></i></h5></a>
-                <ul class="list-group list-group-flush mb-3">
-                    <li class="list-group-item bg-transparent">ФИО: <span id="driver_full_name">Новикова Екатерина Владимировна</span>
-                    </li>
-                    <li class="list-group-item bg-transparent">Дата рождения: <span
-                            id="driver_birth_date">27.07.1985</span>
-                    </li>
-                    <li class="list-group-item bg-transparent">В/У:
-                        <span id="driver_licenses_numbers">0705 579191</span>
-                        стаж с
-                        <span id="driving_experience_started">31.12.2005</span>
-                    </li>
-                </ul>
+                <a href="./drivers" class="text-decoration-none"><h5>Водители <i class="bi bi-pencil-square"></i></h5></a>
+                <div id="drivers-container" class="mb-3">
+
+                </div>
                 <h5>Куда отправлять полис?</h5>
                 <div id="email-input">
                     <p>Отправим полис на Email:</p>
@@ -94,8 +85,15 @@
 <script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
 <script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
 <script src="./sources/store2/store2.min.js"></script>
+<script src="./scripts/localStorageControllers/dataConfirmation.js"></script>
 <script>
     $(document).ready(() => {
+        let number_plate;
+        $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
+            loadData(number_plate);
+            console.log(store.get(number_plate))
+        });
+
         $('input[name=sendInsuranceTo]').inputmask({
             alias: "email",
             jitMasking: true,

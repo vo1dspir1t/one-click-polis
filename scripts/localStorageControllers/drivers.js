@@ -20,7 +20,7 @@ function saveDriversObjectToStorage(number_plate) {
             if ($(this).find('input[name=yearOnly]').is(':checked'))
                 driverLicenseIssue = $(this).find('input[name=driving_experience_started]').inputmask('unmaskedvalue') + '-12-31';
             else
-                driverLicenseIssue = null;
+                driverLicenseIssue = drivingExperienceStarted;
 
         } catch (e) {
             driverLicenseIssue = null;
@@ -45,6 +45,7 @@ function saveDriversObjectToStorage(number_plate) {
             }
         }
 
+        //Баг, при котором во время сохранения данных стираются данные собственника и страхователя
         if (driverObject.additional_parameters.is_owner) {
             const ownerObject = {
                 first_name: driverObject.first_name,
