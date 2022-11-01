@@ -55,7 +55,15 @@ function saveInsurantObjectToStorage(number_plate) {
         }],
         additional_parameters: {
             has_not_flat: $('#insurance_no_flat').is(':checked')
-        }
+        },
+        contact: [{
+            contact_type: "PHONE",
+            data: $('input[name=contact_type_phone]').inputmask('unmaskedvalue')
+        },
+        {
+            contact_type: "EMAIL",
+            data: $('input[name=contact_type_email]').inputmask('unmaskedvalue')
+        }]
     }
     store.add(number_plate, {insurant: insurantObject});
 }
@@ -104,6 +112,8 @@ function loadInsurantObjectFromStorage(number_plate) {
         $('input[name=insurance_address_query_street]').val(insurantObject.insurant.address[0].address_street);
         $('input[name=insurance_address_query_house]').val(insurantObject.insurant.address[0].address_house);
         $('#insurance_no_flat').prop('checked', insurantObject.insurant.additional_parameters.has_not_flat);
+        $('input[name=contact_type_phone]').val(insurantObject.insurant.contact[0].data);
+        $('input[name=contact_type_email]').val(insurantObject.insurant.contact[1].data);
     } catch (e) {
         console.log(e);
     }

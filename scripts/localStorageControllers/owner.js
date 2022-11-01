@@ -58,20 +58,25 @@ function saveOwnerObjectToStorage(number_plate) {
             isOwnerEqualsWithInsurance: $('#flexCheckDefault').is(':checked')
         }
     }
-    if (!ownerObject.additional_parameters.isOwnerEqualsWithInsurance)
+    if (!ownerObject.additional_parameters.isOwnerEqualsWithInsurance) {
         saveInsurantObjectToStorage(number_plate);
-    else
+    } else {
+        ownerObject.contact = [{
+            contact_type: "PHONE",
+            data: $('input[name=contact_type_phone]').inputmask('unmaskedvalue')
+        },
+        {
+            contact_type: "EMAIL",
+            data: $('input[name=contact_type_email]').inputmask('unmaskedvalue')
+        }];
         store.add(number_plate, {insurant: ownerObject});
+    }
 
     store.add(number_plate, {owner: ownerObject});
-
-    console.log(store.get(number_plate))
 }
 
 function loadOwnerObjectFromStorage(number_plate) {
     const ownerObject = store.get(number_plate);
-
-    console.log(ownerObject)
 
     let birth_date;
     let issue_date;
@@ -122,6 +127,8 @@ function loadOwnerObjectFromStorage(number_plate) {
         $('input[name=address_query_house]').val(ownerObject.owner.address[0].address_house);
         $('#flexCheckDefault').prop('checked', ownerObject.owner.additional_parameters.isOwnerEqualsWithInsurance);
         $('#no_flat').prop('checked', ownerObject.owner.additional_parameters.has_not_flat);
+        $('input[name=contact_type_phone]').val(ownerObject.insurant.contact[0].data);
+        $('input[name=contact_type_email]').val(ownerObject.insurant.contact[1].data);
     } catch (e) {
         console.log(e);
     }
