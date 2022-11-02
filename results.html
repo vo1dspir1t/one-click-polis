@@ -42,7 +42,7 @@
     <div class="row g-3">
         <div class="col-lg-4 col-12">
             <div class="accordion mb-3" id="FAQ">
-                <div class="accordion-item">
+                <div class="accordion-item" id="kbmInfo">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -58,10 +58,10 @@
                             <hr>
                             <div class="text-muted">
                                 <p>Автомобиль</p>
-                                <p><strong>Audi Q7, 2017 г.в, 249л.с.</strong></p>
+                                <p><strong id="car-data">Audi Q7, 2017 г.в, 249л.с.</strong></p>
                                 <hr>
                                 <p>Условия страхования</p>
-                                <p><strong>г. Москва, период страхования с 13.10.2022 по 12.10.2022</strong></p>
+                                <p><strong id="insurance-condition">г. Москва, период страхования с 13.10.2022 по 12.10.2022</strong></p>
                             </div>
                         </div>
                     </div>
@@ -226,13 +226,8 @@
 <script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
 <script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
 <script src="./sources/store2/store2.min.js"></script>
-<script>
-    $(document).ready(() => {
-        $('button[status=success]').click(() => {
-            window.location.href = './paymentResult.html';
-        });
-    });
-</script>
+<script src="./scripts/localStorageControllers/results.js"></script>
+<script src="./scripts/pageControllers/results.js"></script>
 
 </body>
 </html>

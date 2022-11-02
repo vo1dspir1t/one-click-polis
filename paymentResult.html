@@ -50,13 +50,13 @@
                 </div>
             </div>
             <div class="row g-3">
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-5 col-12">
                     <h6><i class="bi bi-car-front"></i> Автомобиль:</h6>
-                    <span>Audi Q7, 2017 г.в, 249л.с.</span>
+                    <span id="car-data">Audi Q7, 2017 г.в, 249л.с.</span>
                 </div>
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-3 col-12">
                     <h6><i class="bi bi-person-fill"></i> Водители:</h6>
-                    <span>1 (КБМ 1)</span>
+                    <span><span id="drivers-count">1</span> (КБМ 1)</span>
                 </div>
                 <div class="col-lg-4 col-12">
                     <h6><i class="bi bi-watch"></i> Срок страхования:</h6>
@@ -84,6 +84,10 @@
             <p>На почту, указанную при оформлении страховки отправлен документ. Так же вы можете скачать полис на нашем сайте: <a
                     href="javascript:void(0)">Скачать</a></p>
         </div>
+        <div id="dataLoadingErrored" class="alert alert-danger text-center w-100" style="display: none">
+            <h5>Ошибка загрузки данных.</h5>
+            <span>Пожалуйста, вернитесь назад и проверьте все заполненные данные.</span>
+        </div>
     </div>
 </div>
 
@@ -108,8 +112,14 @@
 <script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
 <script src="./sources/store2/store2.min.js"></script>
 <script src="./sources/jquery.countdown/jquery.countdown.min.js"></script>
+<script src="./scripts/localStorageControllers/paymentResult.js"></script>
 <script>
     $(document).ready(() => {
+        let number_plate;
+        $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
+            loadData(number_plate);
+        });
+
         $('button').click(function () {
             prepareLink();
         });
