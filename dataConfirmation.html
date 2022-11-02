@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="w-100">
-            <div class="alert alert-warning">
+            <div id="info" class="alert alert-warning">
                 <a href="car" class="text-decoration-none"><h5>Срок и автомобиль <i class="bi bi-pencil-square"></i></h5></a>
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item bg-transparent">Срок действия полиса: с <span
@@ -71,6 +71,10 @@
                     <p>Отправим полис на Email:</p>
                     <input type="text" class="form-control" name="sendInsuranceTo" placeholder="example@gmail.com" required>
                 </div>
+            </div>
+            <div id="dataLoadingErrored" class="alert alert-danger text-center" style="display: none">
+                <h5>Ошибка загрузки данных.</h5>
+                <span>Пожалуйста, вернитесь назад и проверьте все заполненные данные.</span>
             </div>
             <div class="d-flex justify-content-between">
                 <button type="button" name="back" class="btn btn-outline-secondary">Назад</button>

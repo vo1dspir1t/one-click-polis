@@ -47,13 +47,22 @@ function saveDriversObjectToStorage(number_plate) {
 
         //Баг, при котором во время сохранения данных стираются данные собственника и страхователя
         if (driverObject.additional_parameters.is_owner) {
-            const ownerObject = {
-                first_name: driverObject.first_name,
-                last_name: driverObject.last_name,
-                patronymic: driverObject.patronymic,
-                birth_date: driverObject.birth_date
+            let ownerObject = store.get(number_plate);
+            try {
+                ownerObject.owner.first_name = driverObject.first_name;
+                ownerObject.owner.last_name = driverObject.last_name;
+                ownerObject.owner.patronymic = driverObject.patronymic;
+                ownerObject.owner.birth_date = driverObject.birth_date;
+                store.add(number_plate, {owner: ownerObject.owner});
+            } catch (e) {
+                ownerObject = {
+                    first_name: driverObject.first_name,
+                    last_name: driverObject.last_name,
+                    patronymic: driverObject.patronymic,
+                    birth_date: driverObject.birth_date
+                }
+                store.add(number_plate, {owner: ownerObject});
             }
-            store.add(number_plate, {owner: ownerObject});
         }
         DriversArray.push(driverObject);
     });
