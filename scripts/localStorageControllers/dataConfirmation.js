@@ -36,5 +36,4 @@ function loadData(number_plate) {
         $('#info').toggle();
         $('.btn.btn-success').addClass('disabled');
     }
-
 }

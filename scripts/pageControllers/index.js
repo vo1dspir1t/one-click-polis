@@ -1,7 +1,6 @@
 $(document).ready(() => {
     let number_plate = $('#number_plate');
 
-
     if (store.size() == 0) {
         $('#results').toggle();
     } else {
@@ -15,7 +14,7 @@ $(document).ready(() => {
     }
 
     $(document).on('click', '#savedResults a', function () {
-        $('#number_plate').val($(this).attr('data-key'));
+        $('#number_plate').val($(this).attr('data-key')).prop('disabled', true);
         setCurrentAuto();
     });
 
