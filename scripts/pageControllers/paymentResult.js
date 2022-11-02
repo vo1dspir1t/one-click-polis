@@ -4,8 +4,12 @@ $(document).ready(() => {
         loadData(number_plate);
     });
 
-    $('button').click(function () {
+    $('button.btn-success').click(function () {
         prepareLink();
+    });
+
+    $('button.btn-outline-secondary').click(() => {
+        window.location.href = './results';
     });
 });
 
@@ -23,9 +27,9 @@ function restartTimer() {
 function prepareLink() {
     $('#getLink').toast('show');
     restartTimer();
-    $('button').addClass('disabled');
+    $('button.btn-success').addClass('disabled');
     setTimeout(() => {
         $('#gotoPayment').toast('show');
-        $('button').removeClass('disabled');
+        $('button.btn-success').removeClass('disabled');
     }, 3000);
 }
