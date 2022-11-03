@@ -19,11 +19,12 @@ function makeDriversObject(number_plate, redirect = false) {
                 driverObject_id: response.id
             }
             response_drivers.push(driver);
+            console.log(driver)
         });
     });
 
     let local_store = store.get(number_plate);
-    local_store.response.drivers = response_drivers;
+    local_store.response['drivers'] = response_drivers;
     store.add(number_plate, local_store);
     console.log(response_drivers)
     if (redirect)
