@@ -43,8 +43,8 @@ function saveInsurantObjectToStorage(number_plate) {
             issue_date: issue_date,
             issue_point: $('input[name=insurance_credential_issue_point]').inputmask('unmaskedvalue'),
             // issue_point_code: $('input[name=last_name]').val(),
-            number: $('input[name=insurance_credential_numbers]').inputmask('unmaskedvalue').substr(0,4),
-            series: $('input[name=insurance_credential_numbers]').inputmask('unmaskedvalue').substr(4,10)
+            number: $('input[name=insurance_credential_numbers]').inputmask('unmaskedvalue').substr(4,6),
+            series: $('input[name=insurance_credential_numbers]').inputmask('unmaskedvalue').substr(0,4)
         }],
         address: [{
             address_query: addressString + houseString + flatString,
@@ -106,7 +106,7 @@ function loadInsurantObjectFromStorage(number_plate) {
         $('input[name=insurance_patronymic]').val(insurantObject.insurant.patronymic);
         $('input[name=insurance_birth_date]').val(birth_date);
         $('select[name=insurance_gender]').val(insurantObject.insurant.gender);
-        $('input[name=insurance_credential_numbers]').val(insurantObject.insurant.credential[0].number+insurantObject.insurant.credential[0].series);
+        $('input[name=insurance_credential_numbers]').val(insurantObject.insurant.credential[0].series+insurantObject.insurant.credential[0].number);
         $('input[name=insurance_credential_issue_date]').val(issue_date);
         $('input[name=insurance_credential_issue_point]').val(insurantObject.insurant.credential[0].issue_point);
         $('input[name=insurance_address_query_street]').val(insurantObject.insurant.address[0].address_street);

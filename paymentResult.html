@@ -66,22 +66,22 @@
                 </div>
             </div>
         </div>
-        <div class="alert alert-secondary w-100 text-start">
+        <div class="alert alert-secondary w-100 text-start" id="paymentActive" style="display: none">
             <h5><i class="bi bi-stopwatch-fill fs-5"></i> Ожидается оплата</h5>
             <p>Для завершения создания страховки, пожалуйста, нажмите кнопку "Оплатить" для перехода на страницу
                 оплаты.</p>
             <p><strong>Осталось времени для оплаты: <span id="payment-timer">30:00</span></strong></p>
         </div>
-        <div class="alert alert-danger w-100 text-start">
+        <div class="alert alert-danger w-100 text-start" id="paymentError" style="display: none">
             <h5><i class="bi bi-x-circle-fill fs-5"></i> Ошибка оплаты</h5>
             <p>Оплата не была завершена. Пожалуйста, нажмите кнопку "Оплатить" ещё раз.</p>
         </div>
-        <div class="alert alert-warning w-100 text-start">
+        <div class="alert alert-warning w-100 text-start" id="paymentExpiring" style="display: none">
             <h5><i class="bi bi-exclamation-circle-fill fs-5"></i> Время действия ссылки на оплату истекает</h5>
             <p>Времени на оплату осталось совсем немного. Не переживайте, вы так же можете <a href="javascript:prepareLink()">оплатить полис по
                 новой ссылке</a></p>
         </div>
-        <div class="alert alert-success w-100 text-start">
+        <div class="alert alert-success w-100 text-start" id="paymentSuccessful" style="display: none">
             <h5><i class="bi bi-check-circle-fill fs-5"></i> Полис успешно оплачен</h5>
             <p>На почту, указанную при оформлении страховки отправлен документ. Так же вы можете скачать полис на нашем сайте: <a
                     href="javascript:void(0)">Скачать</a></p>

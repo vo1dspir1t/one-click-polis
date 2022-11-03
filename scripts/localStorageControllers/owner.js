@@ -43,8 +43,8 @@ function saveOwnerObjectToStorage(number_plate) {
             issue_date: issue_date,
             issue_point: $('input[name=credential_issue_point]').inputmask('unmaskedvalue'),
             // issue_point_code: $('input[name=last_name]').val(),
-            number: $('input[name=credential_numbers]').inputmask('unmaskedvalue').substr(0,4),
-            series: $('input[name=credential_numbers]').inputmask('unmaskedvalue').substr(4,10)
+            number: $('input[name=credential_numbers]').inputmask('unmaskedvalue').substr(4,6),
+            series: $('input[name=credential_numbers]').inputmask('unmaskedvalue').substr(0,4)
         }],
         address: [{
             address_query: addressString + houseString + flatString,
@@ -120,7 +120,7 @@ function loadOwnerObjectFromStorage(number_plate) {
         }
 
         $('select[name=gender]').val(ownerObject.owner.gender);
-        $('input[name=credential_numbers]').val(ownerObject.owner.credential[0].number+ownerObject.owner.credential[0].series);
+        $('input[name=credential_numbers]').val(ownerObject.owner.credential[0].series+ownerObject.owner.credential[0].number);
         $('input[name=credential_issue_date]').val(issue_date);
         $('input[name=credential_issue_point]').val(ownerObject.owner.credential[0].issue_point);
         $('input[name=address_query_street]').val(ownerObject.owner.address[0].address_street);

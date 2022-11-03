@@ -34,8 +34,8 @@ function saveDriversObjectToStorage(number_plate) {
             driving_experience_started: drivingExperienceStarted,
             driver_licenses: [{
                 credential_type: "DRIVER_LICENSE",
-                number: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(0, 4),
-                series: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(4, 6),
+                number: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(4, 6),
+                series: $(this).find('input[name=driver_licenses_numbers]').inputmask('unmaskedvalue').substr(0, 4),
                 issue_date: driverLicenseIssue
             }],
             additional_parameters: {
@@ -128,7 +128,7 @@ function loadDriversObjectFromStorage(number_plate) {
             $(this).find('input[name=patronymic]').val(driversObject.drivers[index].patronymic);
 
             $(this).find('input[name=birth_date]').val(birthDate);
-            $(this).find('input[name=driver_licenses_numbers]').val(driversObject.drivers[index].driver_licenses[0].number + driversObject.drivers[index].driver_licenses[0].series);
+            $(this).find('input[name=driver_licenses_numbers]').val(driversObject.drivers[index].driver_licenses[0].series + driversObject.drivers[index].driver_licenses[0].number);
             $(this).find('input[name=driving_experience_started]').val(drivingExperienceStarted);
             $(this).find('input[name=previous_last_name]').val();
             $(this).find('input[name=previous_driver_licenses_numbers]').val();

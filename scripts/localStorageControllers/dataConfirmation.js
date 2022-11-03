@@ -10,7 +10,7 @@ function loadData(number_plate) {
         $('#credential_numbers').text(`${data.car.credential[0].number} ${data.car.credential[0].series}`);
         $('#insurance_full_name').text(`${data.insurant.last_name} ${data.insurant.first_name} ${data.insurant.patronymic}`);
         $('#insurance_birth_date').text(new Date(data.insurant.birth_date).toLocaleString().substr(0,10));
-        $('#insurance_credential_numbers').text(`${data.insurant.credential[0].number} ${data.insurant.credential[0].series}`);
+        $('#insurance_credential_numbers').text(`${data.insurant.credential[0].series} ${data.insurant.credential[0].number}`);
         $('#insurance_credential_issue_date').text(new Date(data.insurant.credential[0].issue_date).toLocaleString().substr(0,10));
         $('#insurance_address_query').text(data.insurant.address[0].address_query);
         $('input[name=sendInsuranceTo]').val(data.insurant.contact[1].data);
