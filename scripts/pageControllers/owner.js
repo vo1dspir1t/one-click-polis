@@ -87,7 +87,17 @@ $(document).ready(() => {
         e.preventDefault();
         e.stopPropagation();
         if (this.checkValidity()) {
-            window.location.href = './dataConfirmation.html';
+            $('button[type=submit]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
+            try {
+                if (Object.keys(store.get(number_plate).response.owner).length > 0 && Object.keys(store.get(number_plate).response.insurant).length > 0) {
+                    window.location.href = './dataConfirmation.html';
+                } else {
+                    makeOwnerObject(number_plate);
+                    makeInsurantObject(number_plate, true);
+                }
+            } catch (e) {
+                window.location.href = './car.html';
+            }
         }
     });
 

@@ -22,11 +22,19 @@ function makeCarObject(number_plate, redirect = false) {
     }).done((msg)=>{
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
-        local_store.response = {
-            car: {
-                carObject_id: response.id
+        if (local_store.response != undefined)
+            local_store.response.car = {car_id: response.id}
+        else
+            local_store.response = {
+                car: {
+                    car_id: response.id
+                },
+                drivers: [],
+                owner: {},
+                insurant: {},
+                insured_objects: {},
+                agreement: {}
             }
-        }
         store.add(number_plate, local_store);
         if (redirect)
             window.location.href = './drivers.html';

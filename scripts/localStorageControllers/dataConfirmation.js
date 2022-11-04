@@ -24,7 +24,7 @@ function loadData(number_plate) {
             id="driver_birth_date">${new Date(value.birth_date).toLocaleString().substr(0,10)}</span>
             </li>
             <li class="list-group-item bg-transparent">В/У:
-            <span>${value.driver_licenses[0].number} ${value.driver_licenses[0].series}</span>
+            <span>${value.driver_licenses[0].series} ${value.driver_licenses[0].number}</span>
             стаж с
             <span>${new Date(value.driver_licenses[0].issue_date).toLocaleString().substr(0,10)}</span>
             </li>

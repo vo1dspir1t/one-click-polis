@@ -39,14 +39,7 @@ $(document).ready(() => {
         e.stopPropagation();
         if (this.checkValidity() || parseInt($('select').val()) == 0 ) {
             $('button[type=submit]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
-            try {
-                if (Object.keys(store.get(number_plate).response.drivers).length > 0)
-                    window.location.href = './owner.html';
-                else
-                    makeDriversObject(number_plate, false);
-            } catch (e) {
-                makeDriversObject(number_plate, true);
-            }
+            makeDriversObject(number_plate, true);
         }
     });
 
