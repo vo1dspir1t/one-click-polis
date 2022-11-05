@@ -3,12 +3,12 @@ session_start();
 
 require '../config.php';
 
-$insuredObjects = json_encode($_POST['insuredObjects']);
+$precalculatedObject = json_encode($_POST['precalculatedObject']);
 
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://widget.agentapp.ru/v1/insured_objects/',
+    CURLOPT_URL => 'https://widget.agentapp.ru/v1/agreements/calculations',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -16,7 +16,7 @@ curl_setopt_array($curl, array(
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS => $insuredObjects,
+    CURLOPT_POSTFIELDS => $precalculatedObject,
     CURLOPT_HTTPHEADER => array(
         'Content-Type: application/json',
         'Accept: application/json, text/plain, */*',

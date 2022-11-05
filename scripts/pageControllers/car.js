@@ -108,6 +108,7 @@ $(document).ready(() => {
                         makeCarObject(number_plate, true);
                 } catch (e) {
                     console.log(e);
+                    makeCarObject(number_plate, true)
                 }
             }
         }
