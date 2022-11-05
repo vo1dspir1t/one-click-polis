@@ -18,7 +18,7 @@ function makeOwnerObject(number_plate, redirect = false) {
     }).done((msg)=>{
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
-        local_store.response.owner = {owner_id: response.id,
+        local_store.response.owner = {owner_id: response.person,
             owner_registration: [{
             address_query: response.address[0].address_query.split(','),
             region_kladr_id: response.address[0].region_kladr_id

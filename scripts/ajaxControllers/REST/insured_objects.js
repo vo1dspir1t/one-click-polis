@@ -15,7 +15,7 @@ function makeInsuredObjects(number_plate, redirect = false) {
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
         console.log(msg)
-        local_store.response.insured_objects = {insured_objects_id: response.id}
+        local_store.response.insured_objects = {insured_objects_id: response.person}
         store.add(number_plate, local_store);
         if (redirect)
             window.location.href = './results.html';
