@@ -1,6 +1,9 @@
 function makeDriversObject(number_plate, redirect = false) {
-    const local = store.get(number_plate).drivers;
-    $.each(local, function (index) {
+    const local = store.get(number_plate);
+    let deferred = $.Deferred();
+    let local_store = store.get(number_plate);
+    local_store.response.drivers = [];
+    $.each(local.drivers, function () {
         const driverObject = {
             first_name: this.first_name,
             last_name: this.last_name,
@@ -14,11 +17,14 @@ function makeDriversObject(number_plate, redirect = false) {
             driverObject: driverObject
         }).done((msg)=>{
             const response = JSON.parse(msg);
-            let local_store = store.get(number_plate);
-            local_store.response.drivers[index] = {driver_id: response.id};
+            local_store.response.drivers.push({driver_id: response.id});
             store.add(number_plate, local_store);
-            if (redirect)
-                window.location.href = './owner.html';
         });
     });
+
+    $(document).ajaxStop(function () {
+        deferred.resolve();
+    })
+
+    return deferred.promise();
 }

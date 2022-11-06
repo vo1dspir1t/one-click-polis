@@ -63,7 +63,7 @@ function saveOwnerObjectToStorage(number_plate) {
     } else {
         ownerObject.contact = [{
             contact_type: "PHONE",
-            data: $('input[name=contact_type_phone]').inputmask('unmaskedvalue')
+            data: `+7${$('input[name=contact_type_phone]').inputmask('unmaskedvalue')}`
         },
         {
             contact_type: "EMAIL",
@@ -127,7 +127,7 @@ function loadOwnerObjectFromStorage(number_plate) {
         $('input[name=address_query_house]').val(ownerObject.owner.address[0].address_house);
         $('#flexCheckDefault').prop('checked', ownerObject.owner.additional_parameters.isOwnerEqualsWithInsurance);
         $('#no_flat').prop('checked', ownerObject.owner.additional_parameters.has_not_flat);
-        $('input[name=contact_type_phone]').val(ownerObject.insurant.contact[0].data);
+        $('input[name=contact_type_phone]').val(ownerObject.insurant.contact[0].data.substr(2,10));
         $('input[name=contact_type_email]').val(ownerObject.insurant.contact[1].data);
     } catch (e) {
         console.log(e);

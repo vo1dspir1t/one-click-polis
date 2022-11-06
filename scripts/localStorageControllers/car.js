@@ -22,8 +22,8 @@ function saveCarObjectToStorage() {
         credential: [{
             credential_type: $('select[name=credential_type]').val(),
             issue_date: carCredentialIssueDate,
-            number: $('#credential_numbers').inputmask('unmaskedvalue').substr(0,4),
-            series: $('#credential_numbers').inputmask('unmaskedvalue').substr(4,6)
+            number: $('#credential_numbers').inputmask('unmaskedvalue').substr(4,6),
+            series: $('#credential_numbers').inputmask('unmaskedvalue').substr(0,4)
         }]
     }
     store.add(carObject.number_plate, {car: carObject});
@@ -48,7 +48,7 @@ function loadCarObjectFromStorage(number_plate) {
         $('#manufacturing_year').val(carObject.car.manufacturing_year);
         $('#credential_type').val(carObject.car.credential[0].credential_type);
         $('#credential_issue_date').val(carCredentialIssueDate);
-        $('#credential_numbers').val(carObject.car.credential[0].number + carObject.car.credential[0].series);
+        $('#credential_numbers').val(carObject.car.credential[0].series + carObject.car.credential[0].number);
 
         //Проверка на наличие марки авто и выдача моделей авто
         if (carObject.car.car_brand_id != '') {

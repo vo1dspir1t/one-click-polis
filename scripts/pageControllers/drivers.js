@@ -39,7 +39,9 @@ $(document).ready(() => {
         e.stopPropagation();
         if (this.checkValidity() || parseInt($('select').val()) == 0 ) {
             $('button[type=submit]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
-            makeDriversObject(number_plate, true);
+            makeDriversObject(number_plate).done(function () {
+                window.location.href = './owner.html';
+            });
         }
     });
 
