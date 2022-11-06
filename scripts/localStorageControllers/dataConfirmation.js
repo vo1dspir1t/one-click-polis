@@ -7,7 +7,7 @@ function loadData(number_plate) {
         $('#auto').text(`${data.car.car_brand} ${data.car.car_model} ${data.car.manufacturing_year}г. ${data.car.engine_power}л.с.`);
         $('#number_plate').text(number_plate);
         $('#vin_number').text(data.car.vin_number);
-        $('#credential_numbers').text(`${data.car.credential[0].number} ${data.car.credential[0].series}`);
+        $('#credential_numbers').text(`${data.car.credential[0].series} ${data.car.credential[0].number}`);
         $('#insurance_full_name').text(`${data.insurant.last_name} ${data.insurant.first_name} ${data.insurant.patronymic}`);
         $('#insurance_birth_date').text(new Date(data.insurant.birth_date).toLocaleString().substr(0,10));
         $('#insurance_credential_numbers').text(`${data.insurant.credential[0].series} ${data.insurant.credential[0].number}`);

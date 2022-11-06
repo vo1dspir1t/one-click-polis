@@ -17,7 +17,7 @@ function makeDriversObject(number_plate, redirect = false) {
             driverObject: driverObject
         }).done((msg)=>{
             const response = JSON.parse(msg);
-            local_store.response.drivers.push({driver_id: response.id});
+            local_store.response.drivers.push({driver_id: response.id, kbm_value: response.kbm_value});
             store.add(number_plate, local_store);
         });
     });

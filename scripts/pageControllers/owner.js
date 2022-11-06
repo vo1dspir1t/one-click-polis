@@ -7,7 +7,7 @@ $(document).ready(() => {
         let validFrom = new Date();
         let validTo = new Date();
         validFrom.setDate(validFrom.getDate() + 4);
-        validTo.setDate(validTo.getDay()+367);
+        validTo.setDate(validFrom.getDate() - 1);
 
         store.add(number_plate, {
             periods: {
