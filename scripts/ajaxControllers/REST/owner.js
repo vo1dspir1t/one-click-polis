@@ -1,5 +1,6 @@
 function makeOwnerObject(number_plate, redirect = false) {
     const local = store.get(number_plate).owner;
+    let deferred = $.Deferred();
     const ownerObject = {
         last_name: local.last_name,
         first_name: local.first_name,
@@ -27,5 +28,7 @@ function makeOwnerObject(number_plate, redirect = false) {
         store.add(number_plate, local_store);
         if (redirect)
             window.location.href = './dataConfirmation.html';
+        deferred.resolve();
     });
+    return deferred.promise();
 }

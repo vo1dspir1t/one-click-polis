@@ -8,7 +8,7 @@ $precalculatedObject = json_encode($_POST['precalculatedObject']);
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://widget.agentapp.ru/v1/agreements/calculations',
+    CURLOPT_URL => 'https://widget.agentapp.ru/v3/agreements/calculations',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,

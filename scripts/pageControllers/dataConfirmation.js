@@ -2,11 +2,16 @@ $(document).ready(() => {
     let number_plate;
     $.get("./engine/getCurrentAuto.php", (data) => {number_plate = data;}).done(function () {
         loadData(number_plate);
-        if (Object.keys(store.get(number_plate).response.agreement).length <= 0) {
-            $('button[name=next]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
-            makeInsuredObjects(number_plate)
-            // precalculate(number_plate);
-        }
+        makeInsuredObjects(number_plate).done(function () {
+            if (Object.keys(store.get(number_plate).response.agreement).length <= 0) {
+                $('button[name=next]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
+                precalculate(number_plate).done(function () {
+                    patchAgreement(number_plate);
+                });
+            } else {
+                patchAgreement(number_plate);
+            }
+        });
     });
 
     $('input[name=sendInsuranceTo]').inputmask({

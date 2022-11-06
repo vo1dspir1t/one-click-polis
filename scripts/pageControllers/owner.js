@@ -92,8 +92,9 @@ $(document).ready(() => {
                 if (Object.keys(store.get(number_plate).response.owner).length > 0 && Object.keys(store.get(number_plate).response.insurant).length > 0) {
                     window.location.href = './dataConfirmation.html';
                 } else {
-                    makeOwnerObject(number_plate);
-                    makeInsurantObject(number_plate, true);
+                    makeOwnerObject(number_plate).done(function () {
+                        makeInsurantObject(number_plate, true);
+                    });
                 }
             } catch (e) {
                 window.location.href = './car.html';

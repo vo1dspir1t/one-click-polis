@@ -21,7 +21,7 @@ function makeInsurantObject(number_plate, redirect = false) {
     }).done((msg)=>{
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
-        local_store.response.insurant = {insurant_id: response.id}
+        local_store.response.insurant = {insurant_id: response.person}
         store.add(number_plate, local_store);
         if (redirect)
             window.location.href = './dataConfirmation.html';
