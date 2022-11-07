@@ -1,6 +1,6 @@
 function regenerateLink(number_plate) {
     const local = store.get(number_plate);
-    $('.buy-btn .btn.btn-success').addClass('disabled');
+    prepareLink();
     $('#paymentActive').hide();
     $('#paymentExpired').hide('fast');
     $.post("../../engine/API/regenerateLink.php", {

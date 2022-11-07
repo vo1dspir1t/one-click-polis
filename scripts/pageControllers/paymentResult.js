@@ -32,11 +32,13 @@ function restartTimer() {
 
 function prepareLink() {
     $('#getLink').toast('show');
+    $('.link-status').show('fast');
     $('button.btn-success').addClass('disabled');
 }
 
 function linkPrepared() {
     $('#paymentReady').toast('show');
+    $('.link-status').hide('fast');
     restartTimer();
     $('.buy-btn .btn.btn-success').removeClass('disabled');
     $('#paymentActive').slideToggle('fast');
