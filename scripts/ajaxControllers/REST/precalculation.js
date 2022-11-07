@@ -27,8 +27,8 @@ function precalculate(number_plate, redirect = false) {
     }).done((msg)=>{
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
-        local_store.response.agreement = {agreement_id: response.id}
-        store.add(number_plate, local_store);
+        local_store.response.agreement = {agreement_id: response.id, kbm_value: response.calculation.data.kbm};
+        store.set(number_plate, local_store);
         if (redirect)
             window.location.href = './results.html';
         deferred.resolve();
