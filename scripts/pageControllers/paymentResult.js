@@ -11,7 +11,7 @@ $(document).ready(() => {
 
 function restartTimer() {
     let finalDate = new Date();
-    finalDate.setMinutes(finalDate.getMinutes() + 30);
+    finalDate.setMinutes(finalDate.getMinutes() + 20);
 
     $('#payment-timer').countdown(finalDate, function (event) {
         $(this).text(
