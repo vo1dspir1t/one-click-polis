@@ -28,7 +28,7 @@ function getRequestFromCompanies(number_plate, companies_list) {
                     </div>
                 </div>
                 <div class="col-lg-3 col-12">
-                    <span style="font-size: 18px">${this.title}</span>
+                    <span style="font-size: 18px" id="company-title">${this.title}</span>
                 </div>
                 <div class="col-lg-3 col-12">
                     <span style="font-size: 18px" id="company-price">Выполняется запрос</span>
@@ -48,19 +48,24 @@ function getRequestFromCompanies(number_plate, companies_list) {
             agreement_id: local.response.agreement.agreement_id,
             companyCode: this.code
         }).done(msg => {
-            const data = JSON.parse(msg);
-            if (data.error != undefined || data.detail != undefined) {
-                const companyDOM = $('#'+this.code);
-                companyDOM.find('.btn.btn-secondary').attr('status', 'error').text('Отказ').toggleClass('btn-secondary').toggleClass('btn-danger');
-                companyDOM.find('#company-price').text('Оформление невозможно');
-            } else {
-                const companyDOM = $('#'+this.code);
-                companyDOM.find('.btn.btn-secondary').attr('status', 'success').text('Купить').toggleClass('btn-secondary').toggleClass('btn-success').toggleClass('disabled');
-                companyDOM.find('#company-price').text(`${Math.round(parseFloat(data.parameters.premium))} Руб.`);
-                companyDOM.prependTo('.result-body');
+            try {
+                const data = JSON.parse(msg);
+                if (data.error != undefined || data.detail != undefined) {
+                    const companyDOM = $('#'+this.code);
+                    companyDOM.find('.btn.btn-secondary').attr('status', 'error').text('Отказ').toggleClass('btn-secondary').toggleClass('btn-danger');
+                    companyDOM.find('#company-price').text('Оформление невозможно');
+                } else {
+                    const companyDOM = $('#'+this.code);
+                    companyDOM.find('.btn.btn-secondary').attr('status', 'success').text('Купить').toggleClass('btn-secondary').toggleClass('btn-success').toggleClass('disabled');
+                    companyDOM.find('#company-price').text(`${Math.round(parseFloat(data.parameters.premium))} Руб.`);
+                    companyDOM.prependTo('.result-body');
+                }
+                progressWidth += progressBarStep
+                $('.progress-bar').width(progressWidth);
+            } catch (e) {
+                console.log(e);
+                window.location.href = './dataConfirmation.html';
             }
-            progressWidth += progressBarStep
-            $('.progress-bar').width(progressWidth);
         });
     });
 }

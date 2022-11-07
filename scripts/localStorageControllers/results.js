@@ -10,3 +10,19 @@ function loadData(number_plate) {
         $('#kbmInfo').remove();
     }
 }
+
+function saveCurrentCompany(number_plate, btnSelector, redirect = false) {
+    let local = store.get(number_plate);
+    btnSelector.addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
+    const currentCompany = {
+        code: btnSelector.closest('.row').attr('id'),
+        image: btnSelector.closest('.row').find('img').attr('src'),
+        title: btnSelector.closest('.row').find('#company-title').text(),
+        price: btnSelector.closest('.row').find('#company-price').text(),
+        paymentLink: undefined
+    }
+    local.currentCompany = currentCompany;
+    store.set(number_plate, local);
+    if (redirect)
+        window.location.href = './paymentResult.html';
+}

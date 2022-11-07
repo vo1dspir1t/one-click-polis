@@ -5,7 +5,7 @@ $(document).ready(() => {
         getResultsFromCompanies(number_plate);
     });
 
-    $('button[status=success]').click(() => {
-        window.location.href = './paymentResult.html';
+    $(document).on('click', 'button[status=success]', function () {
+        saveCurrentCompany(number_plate, $(this), true);
     });
 });

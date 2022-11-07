@@ -35,18 +35,8 @@
             </div>
             <p>Оплата происходит на сайте страховой компании</p>
             <div class="company row g-3 mb-3 align-items-center text-center">
-                <div class="company-logo col-lg-3 col-12">
-                    <img src="https://widget.agentapp.ru/media/integrated_companies/absolut.png"
-                         class="img-thumbnail rounded">
-                </div>
-                <div class="company-info col-lg-4 col-12">
-                    Mafin (Абсолют), ООО
-                </div>
-                <div class="company-price col-lg-3 col-12">
-                    10 846.40 Руб.
-                </div>
                 <div class="buy-btn col-lg-2 col-12">
-                    <button class="btn btn-success w-100">
+                    <button class="btn btn-success w-100 disabled">
                         Оплатить
                     </button>
                 </div>
@@ -58,13 +48,18 @@
                 </div>
                 <div class="col-lg-3 col-12">
                     <h6><i class="bi bi-person-fill"></i> Водители:</h6>
-                    <span><span id="drivers-count">1</span> (КБМ 1)</span>
+                    <span><span id="drivers-count">1</span> (КБМ <span id="kbm-value">1</span>)</span>
                 </div>
                 <div class="col-lg-4 col-12">
                     <h6><i class="bi bi-watch"></i> Срок страхования:</h6>
                     c <span id="valid_from">27.11.2021</span> по <span id="valid_to">26.11.2022</span>
                 </div>
             </div>
+        </div>
+        <div class="alert alert-warning w-100 text-start" id="paymentExpired" style="display: none">
+            <h5><i class="bi bi-exclamation-circle-fill fs-5"></i> Время действия ссылки на оплату истекло</h5>
+            <p>Время на оплату закончилось. Не переживайте, вы можете <a href="javascript:void(0)" id="regenerate-link">оплатить полис по
+                новой ссылке</a></p>
         </div>
         <div class="alert alert-secondary w-100 text-start" id="paymentActive" style="display: none">
             <h5><i class="bi bi-stopwatch-fill fs-5"></i> Ожидается оплата</h5>
@@ -73,13 +68,8 @@
             <p><strong>Осталось времени для оплаты: <span id="payment-timer">30:00</span></strong></p>
         </div>
         <div class="alert alert-danger w-100 text-start" id="paymentError" style="display: none">
-            <h5><i class="bi bi-x-circle-fill fs-5"></i> Ошибка оплаты</h5>
-            <p>Оплата не была завершена. Пожалуйста, нажмите кнопку "Оплатить" ещё раз.</p>
-        </div>
-        <div class="alert alert-warning w-100 text-start" id="paymentExpiring" style="display: none">
-            <h5><i class="bi bi-exclamation-circle-fill fs-5"></i> Время действия ссылки на оплату истекает</h5>
-            <p>Времени на оплату осталось совсем немного. Не переживайте, вы так же можете <a href="javascript:prepareLink()">оплатить полис по
-                новой ссылке</a></p>
+            <h5><i class="bi bi-x-circle-fill fs-5"></i> Полис ещё не оплачен!</h5>
+            <p>Оплата не была завершена. Пожалуйста, вернитесь на страницу оплаты и завершите покупку.</p>
         </div>
         <div class="alert alert-success w-100 text-start" id="paymentSuccessful" style="display: none">
             <h5><i class="bi bi-check-circle-fill fs-5"></i> Полис успешно оплачен</h5>
@@ -99,12 +89,14 @@
             Подготавливаем ссылку на оплату, пожалуйста, ожидайте.
         </div>
     </div>
-</div>
-
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="gotoPayment" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="quotationStatus" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body" style="font-size: 16px">
-            Переходим по ссылке...
+
+        </div>
+    </div>
+    <div id="paymentReady" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body" style="font-size: 16px">
+            Ссылка подготовлена!
         </div>
     </div>
 </div>
@@ -116,5 +108,9 @@
 <script src="./sources/jquery.countdown/jquery.countdown.min.js"></script>
 <script src="./scripts/localStorageControllers/paymentResult.js"></script>
 <script src="./scripts/pageControllers/paymentResult.js"></script>
+<script src="./scripts/ajaxControllers/REST/checkQuotationStatus.js"></script>
+<script src="./scripts/ajaxControllers/REST/buyPolis.js"></script>
+<script src="./scripts/ajaxControllers/REST/regenerateLink.js"></script>
+<script src="./scripts/ajaxControllers/REST/checkPayment.js"></script>
 </body>
 </html>
