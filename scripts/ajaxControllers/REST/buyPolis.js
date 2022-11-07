@@ -11,7 +11,8 @@ function buyPolis(number_plate) {
             store.set(number_plate, local_store);
             linkPrepared();
         } catch (e) {
-            console.log(e);
+            console.log(e, msg);
+            window.location.replace('./dataConfirmation.html');
         }
     });
 }

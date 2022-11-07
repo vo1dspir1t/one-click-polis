@@ -6,5 +6,11 @@ function checkPayment(number_plate) {
         const data = JSON.parse(msg);
         if (data.error != undefined)
             $('#paymentError').show();
+        else {
+            $('#paymentError').hide();
+            $('#paymentActive').hide();
+            $('#paymentExpired').hide();
+            $('#paymentSuccessful').show();
+        }
     });
 }

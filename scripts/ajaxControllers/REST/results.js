@@ -1,4 +1,4 @@
-const skipCompanies = ["RENAISSANCE_NEW", "RGS", "CARDIF", "TEST_COMPANY"];
+const skipCompanies = ["RENAISSANCE_NEW", "CARDIF", "RGS", "TEST_COMPANY"];
 const progressBarWidth = $('.progress').width();
 let progressWidth = $('.progress-bar').width();
 let progressBarStep = 0;
@@ -60,7 +60,7 @@ function getRequestFromCompanies(number_plate, companies_list) {
                     companyDOM.find('#company-price').text(`${Math.round(parseFloat(data.parameters.premium))} Руб.`);
                     companyDOM.prependTo('.result-body');
                 }
-                progressWidth += progressBarStep
+                progressWidth += progressBarStep;
                 $('.progress-bar').width(progressWidth);
             } catch (e) {
                 console.log(e);

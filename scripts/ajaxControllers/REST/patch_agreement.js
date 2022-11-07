@@ -10,6 +10,8 @@ function patchAgreement(number_plate, redirect = false) {
     }).done((msg)=>{
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
+        if (response.error !== undefined)
+            location.reload();
         local_store.response.agreement = {agreement_id: response.id}
         store.add(number_plate, local_store);
         $('button[name=next]').removeClass('disabled').addClass('btn-success').removeClass('btn-secondary').html(`Продолжить`);
