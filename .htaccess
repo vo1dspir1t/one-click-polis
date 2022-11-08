@@ -7,3 +7,5 @@ RewriteCond %{REQUEST_fileNAME} !-d
 RewriteCond %{REQUEST_fileNAME} !-f
 RewriteRule (.*) /$1.html
 ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+Options All -Indexes
