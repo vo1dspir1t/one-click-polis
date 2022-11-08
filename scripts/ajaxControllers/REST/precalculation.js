@@ -22,7 +22,7 @@ function precalculate(number_plate, redirect = false) {
         drivers_ids: driversIdArray
     }
 
-    $.post("../../engine/API/precalculation.php", {
+    $.post("./engine/API/precalculation.php", {
         precalculatedObject: precalculatedObject
     }).done((msg)=>{
         let local_store = store.get(number_plate);

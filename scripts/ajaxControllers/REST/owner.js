@@ -14,7 +14,7 @@ function makeOwnerObject(number_plate, redirect = false) {
         }]
     }
 
-    $.post("../../engine/API/owner.php", {
+    $.post("./engine/API/owner.php", {
         ownerObject: ownerObject
     }).done((msg)=>{
         let local_store = store.get(number_plate);

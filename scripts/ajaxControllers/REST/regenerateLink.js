@@ -3,7 +3,7 @@ function regenerateLink(number_plate) {
     prepareLink();
     $('#paymentActive').hide();
     $('#paymentExpired').hide('fast');
-    $.post("../../engine/API/regenerateLink.php", {
+    $.post("./engine/API/regenerateLink.php", {
         agreement_id: local.response.agreement.agreement_id
     }).done(msg => {
         const data = JSON.parse(msg);

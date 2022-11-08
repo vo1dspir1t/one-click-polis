@@ -4,7 +4,7 @@ function patchAgreement(number_plate, redirect = false) {
         insured_object: local.response.insured_objects.insured_objects_id
     }
 
-    $.post("../../engine/API/patch_agreement.php", {
+    $.post("./engine/API/patch_agreement.php", {
         patch_agreement: patch_agreement,
         agreement_id: local.response.agreement.agreement_id
     }).done((msg)=>{

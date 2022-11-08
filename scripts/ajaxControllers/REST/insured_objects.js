@@ -12,7 +12,7 @@ function makeInsuredObjects(number_plate, redirect = false) {
         insurant: local.response.insurant.insurant_id
     }
 
-    $.post("../../engine/API/insured_objects.php", {
+    $.post("./engine/API/insured_objects.php", {
         insuredObjects: insuredObjects
     }).done((msg)=>{
         let local_store = store.get(number_plate);

@@ -17,7 +17,7 @@ function makeCarObject(number_plate, redirect = false) {
         }]
     }
 
-    $.post("../../engine/API/car.php", {
+    $.post("./engine/API/car.php", {
         carObject: carObject
     }).done((msg)=>{
         let local_store = store.get(number_plate);

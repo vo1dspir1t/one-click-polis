@@ -1,6 +1,6 @@
 function checkQuotationStatus(number_plate) {
     const local = store.get(number_plate);
-    $.post("../../engine/API/checkQuotationStatus.php", {
+    $.post("./engine/API/checkQuotationStatus.php", {
         agreement_id: local.response.agreement.agreement_id,
         companyCode: local.currentCompany.code
     }).done(msg => {

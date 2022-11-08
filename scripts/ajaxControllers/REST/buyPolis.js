@@ -1,6 +1,6 @@
 function buyPolis(number_plate) {
     const local = store.get(number_plate);
-    $.post("../../engine/API/buyPolis.php", {
+    $.post("./engine/API/buyPolis.php", {
         agreement_id: local.response.agreement.agreement_id,
         companyCode: local.currentCompany.code
     }).done(msg => {

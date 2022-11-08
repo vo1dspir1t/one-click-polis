@@ -5,7 +5,7 @@ let progressBarStep = 0;
 
 function getResultsFromCompanies(number_plate) {
     let companies = [];
-    $.get("../../engine/dictionaries/getInsuranceCompanies.php", msg => {
+    $.get("./engine/dictionaries/getInsuranceCompanies.php", msg => {
         companies = JSON.parse(msg);
     }).done(() => {
         progressBarStep = (progressBarWidth-progressWidth)/(companies.length-skipCompanies.length);
@@ -44,7 +44,7 @@ function getRequestFromCompanies(number_plate, companies_list) {
             </div>
         `);
 
-        $.post("../../engine/API/getCalculation.php", {
+        $.post("./engine/API/getCalculation.php", {
             agreement_id: local.response.agreement.agreement_id,
             companyCode: this.code
         }).done(msg => {

@@ -13,7 +13,7 @@ function makeDriversObject(number_plate, redirect = false) {
             driver_licenses: this.driver_licenses
         }
 
-        $.post("../../engine/API/drivers.php", {
+        $.post("./engine/API/drivers.php", {
             driverObject: driverObject
         }).done((msg)=>{
             const response = JSON.parse(msg);

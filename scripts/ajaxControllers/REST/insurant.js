@@ -16,7 +16,7 @@ function makeInsurantObject(number_plate, redirect = false) {
 
     }
 
-    $.post("../../engine/API/insurant.php", {
+    $.post("./engine/API/insurant.php", {
         insurantObject: insurantObject
     }).done((msg)=>{
         let local_store = store.get(number_plate);
