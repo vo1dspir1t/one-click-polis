@@ -102,10 +102,11 @@ $(document).ready(() => {
                 const number_plate = $('input[name=number_plate]').inputmask("unmaskedvalue");
                 $('button[type=submit]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
                 try {
-                    if (Object.keys(store.get(number_plate).response.car).length > 0)
-                        window.location.href = './drivers.html';
-                    else
-                        makeCarObject(number_plate, true);
+                    // if (Object.keys(store.get(number_plate).response.car).length > 0)
+                    //     window.location.href = './drivers.html';
+                    // else
+                    //     makeCarObject(number_plate, true);
+                    makeCarObject(number_plate, true);
                 } catch (e) {
                     console.log(e);
                     makeCarObject(number_plate, true)

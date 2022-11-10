@@ -89,13 +89,16 @@ $(document).ready(() => {
         if (this.checkValidity()) {
             $('button[type=submit]').addClass('disabled').removeClass('btn-success').addClass('btn-secondary').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...`);
             try {
-                if (Object.keys(store.get(number_plate).response.owner).length > 0 && Object.keys(store.get(number_plate).response.insurant).length > 0) {
-                    window.location.href = './dataConfirmation.html';
-                } else {
-                    makeOwnerObject(number_plate).done(function () {
-                        makeInsurantObject(number_plate, true);
-                    });
-                }
+                // if (Object.keys(store.get(number_plate).response.owner).length > 0 && Object.keys(store.get(number_plate).response.insurant).length > 0) {
+                //     window.location.href = './dataConfirmation.html';
+                // } else {
+                //     makeOwnerObject(number_plate).done(function () {
+                //         makeInsurantObject(number_plate, true);
+                //     });
+                // }
+                makeOwnerObject(number_plate).done(function () {
+                    makeInsurantObject(number_plate, true);
+                });
             } catch (e) {
                 window.location.href = './car.html';
             }

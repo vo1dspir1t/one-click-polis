@@ -4,6 +4,7 @@ function checkPayment(number_plate) {
         agreement_id: local.response.agreement.agreement_id
     }).done(msg => {
         const data = JSON.parse(msg);
+        console.log(data)
         if (data.error != undefined)
             $('#paymentError').show();
         else {

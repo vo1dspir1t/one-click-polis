@@ -1,9 +1,9 @@
 $(document).ready(() => {
     let number_plate = $('#number_plate');
 
-    if (store.size() == 0) {
+    if (store.size() > 0) {
         $('#results').toggle();
-    } else {
+        $('#savedResults').toggle();
         try {
             store.each(function (key, value) {
                 $('#savedResults').append(`<li><a class="text-decoration-none" href="javascript:void(0)" data-key="${key}">${value.car.car_brand} ${value.car.car_model} (${key})</a></li>`);
@@ -42,20 +42,11 @@ $(document).ready(() => {
         }
     });
 
-    $('button[name=toggleResults]').click(function () {
-        $(this).text(($(this).text() == "Скрыть") ? "Показать" : "Скрыть");
-        $('#savedResults').slideToggle('fast');
-    });
-
     // Debug block
 
     $(document).keydown((e) => {
         if (e.ctrlKey && e.altKey && e.keyCode == 71)
             $('button[name=debug]').toggle();
-    });
-
-    $('#toggleResults').click(() => {
-        $('#results').toggle();
     });
 
     $('#LogStorage').click(() => {
