@@ -15,6 +15,20 @@
             max-width: 942px;
         }
     </style>
+    <script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
+    <script src="./sources/store2/store2.min.js"></script>
+    <!--Данный скрипт должен быть в самом начале-->
+    <script>
+        const local_store = store.getAll();
+    </script>
+    <!--Данный скрипт должен быть в самом начале-->
+
+    <!--Данный скрипт должен быть последним-->
+    <script>
+        const metrika_store = store.getAll();
+        store.setAll(Object.assign(metrika_store, local_store));
+    </script>
+    <!--Данный скрипт должен быть последним-->
 </head>
 <body>
 
@@ -131,9 +145,7 @@
 </div>
 
 <script src="./sources/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
 <script src="./sources/jquery-mask/jquery.inputmask.min.js"></script>
-<script src="./sources/store2/store2.min.js"></script>
 <script src="./scripts/localStorageControllers/drivers.js"></script>
 <script src="./scripts/pageControllers/drivers.js"></script>
 <script src="./scripts/ajaxControllers/drivers.js"></script>
