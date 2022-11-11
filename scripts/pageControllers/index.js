@@ -1,22 +1,12 @@
 $(document).ready(() => {
     let number_plate = $('#number_plate');
 
-    if (store.size() > 0) {
-        $('#results').toggle();
-        $('#savedResults').toggle();
-        try {
-            store.each(function (key, value) {
-                $('#savedResults').append(`<li><a class="text-decoration-none" href="javascript:void(0)" data-key="${key}">${value.car.car_brand} ${value.car.car_model} (${key})</a></li>`);
-            });
-        } catch (e) {
-            store(false);
-        }
-    }
-
     $(document).on('click', '#savedResults a', function () {
         $('#number_plate').val($(this).attr('data-key')).prop('disabled', true);
         setCurrentAuto();
     });
+
+    updateSavedResults();
 
     //Маски для полей
     $('#number_plate').inputmask({
@@ -57,3 +47,26 @@ $(document).ready(() => {
         store(false);
     });
 });
+
+function updateSavedResults() {
+    if (store.size() > 0) {
+        let keysCount = 0;
+        store.each(function (key) {
+            if (!key.startsWith('_'))
+                keysCount++;
+        });
+        if (keysCount > 0) {
+            $('#results').show();
+            $('#savedResults').show();
+            try {
+                store.each(function (key, value) {
+                    if (!key.startsWith('_'))
+                        $('#savedResults').append(`<li><a class="text-decoration-none" href="javascript:void(0)" data-key="${key}">${value.car.car_brand} ${value.car.car_model} (${key})</a></li>`);
+                });
+            } catch (e) {
+                console.log(e);
+                // store(false);
+            }
+        }
+    }
+}
