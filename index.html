@@ -10,44 +10,60 @@
     <link rel="stylesheet" href="./sources/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./sources/general-styles.css">
-</head>
-<style>
-    .brand {
-        margin-top: 200px;
-    }
-
-    .custom-tooltip {
-        --bs-tooltip-bg: var(--bs-danger);
-        --bs-tooltip-max-width: 500px;
-    }
-    
-    @media (max-width: 576px) {
+    <style>
         .brand {
-            margin-top: 75px;
+            margin-top: 200px;
         }
-    }
-</style>
-<script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
-<script src="./sources/store2/store2.min.js"></script>
-<script src="./scripts/pageControllers/index.js"></script>
-<!--Данный скрипт должен быть в самом начале-->
-<script>
-    const local_store = store.getAll();
-</script>
-<!--Данный скрипт должен быть в самом начале-->
 
+        .custom-tooltip {
+            --bs-tooltip-bg: var(--bs-danger);
+            --bs-tooltip-max-width: 500px;
+        }
 
+        @media (max-width: 576px) {
+            .brand {
+                margin-top: 75px;
+            }
+        }
+    </style>
+    <script src="./sources/jquery/js/jquery-3.6.1.min.js"></script>
+    <script src="./sources/store2/store2.min.js"></script>
+    <script src="./scripts/pageControllers/index.js"></script>
+    <!--Данный скрипт должен быть в самом начале-->
+    <script>
+        const local_store = store.getAll();
+    </script>
+    <!--Данный скрипт должен быть в самом начале-->
 
-<!--Данный скрипт должен быть последним-->
-<script>
-    window.addEventListener('storage', () => {
-        let metrika_store = store.getAll();
-        store.clearAll();
-        store.setAll(Object.assign(metrika_store, local_store), true);
-        updateSavedResults();
-    });
-</script>
-<!--Данный скрипт должен быть последним-->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(89449203, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/89449203" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!--Данный скрипт должен быть последним-->
+    <script>
+        window.addEventListener('storage', () => {
+            let metrika_store = store.getAll();
+            store.clearAll();
+            store.setAll(Object.assign(metrika_store, local_store));
+            updateSavedResults();
+        });
+    </script>
+    <!--Данный скрипт должен быть последним-->
+</head>
 <body>
 
 <button class="btn btn-outline-primary position-fixed end-0 top-0 m-3" name="debug" data-bs-toggle="modal"

@@ -10,32 +10,32 @@
     <link rel="stylesheet" href="./sources/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./sources/general-styles.css">
+    <style>
+        form {
+            max-width: 940px;
+        }
+
+        .dictionary {
+            position: absolute;
+            max-height: 250px;
+            overflow-y: scroll;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: var(--bs-list-group-border-radius);
+            width: calc(100% - 20px);
+            top: 5rem;
+            z-index: 500;
+        }
+
+        .custom-tooltip {
+            --bs-tooltip-bg: var(--bs-danger);
+            --bs-tooltip-max-width: 500px;
+        }
+
+        .form-control:read-only {
+            background: #e9ecef;
+        }
+    </style>
 </head>
-<style>
-    form {
-        max-width: 940px;
-    }
-
-    .dictionary {
-        position: absolute;
-        max-height: 250px;
-        overflow-y: scroll;
-        border: 1px solid rgba(0, 0, 0, 0.125);
-        border-radius: var(--bs-list-group-border-radius);
-        width: calc(100% - 20px);
-        top: 5rem;
-        z-index: 500;
-    }
-
-    .custom-tooltip {
-        --bs-tooltip-bg: var(--bs-danger);
-        --bs-tooltip-max-width: 500px;
-    }
-
-    .form-control:read-only {
-        background: #e9ecef;
-    }
-</style>
 <body>
 <div class="container">
     <div class="d-flex flex-column align-items-center mt-5 mb-3">

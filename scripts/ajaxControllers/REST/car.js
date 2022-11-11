@@ -22,7 +22,6 @@ function makeCarObject(number_plate, redirect = false) {
     }).done((msg)=>{
         let local_store = store.get(number_plate);
         const response = JSON.parse(msg);
-        console.log(msg)
         if (local_store.response != undefined)
             local_store.response.car = {car_id: response.id, car_type: response.car_type}
         else
