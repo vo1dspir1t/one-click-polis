@@ -59,6 +59,7 @@ function updateSavedResults() {
             $('#results').show();
             $('#savedResults').show();
             try {
+                $('#savedResults').empty();
                 store.each(function (key, value) {
                     if (!key.startsWith('_'))
                         $('#savedResults').append(`<li><a class="text-decoration-none" href="javascript:void(0)" data-key="${key}">${value.car.car_brand} ${value.car.car_model} (${key})</a></li>`);
