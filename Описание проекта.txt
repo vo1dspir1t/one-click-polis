@@ -1,0 +1,22 @@
+Директории
+
+/engine/ - Папка с всеми php файлами проекта
+- /API/ - Папка со всеми запросами (POST, PATCH) к АПИ AgentApp
+- /dictionaries/ - Папка с запросами на получение словарей от AgentApp (GET)
+
+/images/ - Папка с изображениями, хранящимися на проекте (на данный момент только логотип проекта)
+
+/scripts/ - Папка с скриптами, которые были написаны вручную
+- /ajaxControllers/ - Контроллеры, которые выполняют AJAX запросы к php файлам на проекте
+- /localStorageControllers/ - Контроллеры, которые обрабатывают данные локального хранилища
+- /pageControllers/ - Контроллеры JS для страниц. Весь JS для страниц выносится именно в данную папку.
+
+/sources/ - Папка с готовыми библиотеками, которые используются в проекте
+- /bootstrap/ - HTML, CSS, JS фреймворк (Аналоги MaterialUI, Tailwind CSS) [https://getbootstrap.com/]
+- /jquery/ - набор функций JavaScript, фокусирующийся на взаимодействии JavaScript и HTML. [https://jquery.com/]
+- /jquery-mask/ - Плагин JQuery, добавляющий маски для input. [https://github.com/RobinHerbots/Inputmask]
+- /jquery.countdown/ - Плагин JQuery, добавляющий таймер (Используется на странице оплаты полиса) [http://hilios.github.io/jQuery.countdown/documentation.html]
+- /jquery.suggestions/ - Плагин JQuery, используемый в DaData (Выборка адресов)
+- /store2/ - Готовая библиотека для работы с локальным хранилищем [https://github.com/nbubna/store]
+
+
